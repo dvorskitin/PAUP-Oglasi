@@ -1,0 +1,48 @@
+﻿@model Akcija_prodaja.Models.KorisnikModel
+@using System.Web.Mvc;
+
+
+
+<div class="col-sm-4"></div>
+<div class="col-sm-4">
+
+    @using (Html.BeginForm())
+    {
+
+
+        @Html.AntiForgeryToken()
+
+    <div class="form-signin">
+
+        @*<div class="text-center">
+            <img src="~/Logo/logo.png" id="logoimg" alt=" Logo" />
+        </div>*@
+
+        <p></p>
+        <p></p>
+        <h4 class="text-left">PRIJAVA</h4>
+
+        <p></p>
+        <p></p>
+        <p class="text-primary">Upišite korisničko ime:</p>
+        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", placeholder = "E-mail adresa" } })
+        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+
+        <p></p>
+        <p></p>
+        <p class="text-primary">Upišite lozinku:</p>
+        @Html.PasswordFor(model => model.lozinka, new { @class = "form-control", placeholder = "Lozinka" })
+        @Html.ValidationMessageFor(model => model.lozinka, "", new { @class = "text-danger" })
+
+
+    </div>
+        <p></p>
+        <p></p>
+
+        <p><input type="submit" value="Prijavi se" class="btn btn-primary" /></p>
+    }
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
