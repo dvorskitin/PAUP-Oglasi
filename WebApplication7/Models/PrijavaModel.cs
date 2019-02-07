@@ -8,12 +8,12 @@ namespace Akcija_prodaja.Models
 {
     public class PrijavaModel
     {
-        [Required(ErrorMessage = "The email address is required")]
+        [Required(ErrorMessage = "{0} je obavezan")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string email { get; set; }
 
 
-        [Required(ErrorMessage = "The password is required")]
+        [Required(ErrorMessage = "{0} je obavezna")]
         [DataType(DataType.Password)]
         public string lozinka { get; set; }
 

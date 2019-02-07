@@ -66,7 +66,7 @@ namespace WebApplication7.Controllers
             List<PoduzeceModel> poduzece = baza.Poduzeca.ToList();
             poduzece.Add(new PoduzeceModel {  naziv_poduzece= "Nedefinirano" });
             ViewBag.Poduzece = poduzece;
-            ViewBag.Title = "Ažuriranje podataka o poduzecu";
+            ViewBag.Title = "Dodavanje novog poduzeca";
             return View(p);
         }
 
@@ -95,7 +95,7 @@ namespace WebApplication7.Controllers
             List<PoduzeceModel> poduzece = baza.Poduzeca.ToList();
             poduzece.Add(new PoduzeceModel { naziv_poduzece = "Nedefinirano" });
             ViewBag.Poduzece = poduzece;
-            ViewBag.Title = "Ažuriranje podataka o poduzecu";
+            ViewBag.Title = "Dodavanje novog poduzeca";
             return View(p);
         }
 

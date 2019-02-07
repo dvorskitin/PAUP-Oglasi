@@ -9,10 +9,10 @@
 <h2>@ViewBag.Title</h2>
 @using (@Html.BeginForm("Popis", "Poduzece", FormMethod.Get, new { @class = "form-inline" }))
 {
-<div class="form-group">
-    @Html.Label("Naziv", new { @class = "sr-only" })
-    @Html.TextBox("Naziv", "", new { @class = "form-control", placeholder = "Naziv poduzeca" })
-</div>
+    <div class="form-group">
+        @Html.Label("Naziv", new { @class = "sr-only" })
+        @Html.TextBox("Naziv", "", new { @class = "form-control", placeholder = "Naziv poduzeca" })
+    </div>
 }
 <br />
 <table class="table">
@@ -26,20 +26,20 @@
     </tr>
     @foreach (PoduzeceModel p in Model)
     {
-    <tr>
-        <td>@p.naziv_poduzece</td>
-        <td>@p.adresa</td>
-        <td>@p.grad</td>
-        <td>@p.telefon</td>
-        <td>@p.email</td>
-        <td>@p.web_adresa</td>
-        @*<td>
-            @Html.ActionLink("Više", "Detaljno", new { id = s.Id }) |
-            @Html.ActionLink("Ažuriraj", "Azuriraj", new { id = s.Id }) |
-            @Html.ActionLink("Obriši", "Obrisi", new { id = s.Id })
-        </td>*@
-    </tr>
-    }
+        <tr>
+            <td>@p.naziv_poduzece</td>
+            <td>@p.adresa</td>
+            <td>@p.grad</td>
+            <td>@p.telefon</td>
+            <td>@p.email</td>
+            <td>@p.web_adresa</td>
+            @*<td>
+                @Html.ActionLink("Uredi", "Uredivanje", new { id = p.id_poduzece })
+            </td>*@
+        </tr>
+
+     }
 </table>
-<p>@Html.ActionLink("Povratak", "PocetnaStranica","Pocetna")</p>
+<p>@Html.ActionLink("Dodavanje novog poduzeca","DodavanjePoduzeca","Poduzece")</p>
+<p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>
 
