@@ -12,6 +12,7 @@ namespace WebApplication7.Controllers
         public ActionResult PocetnaStranica()
         {
 
+
             return View();
         }
     }

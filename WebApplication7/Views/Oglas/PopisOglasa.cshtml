@@ -1,0 +1,49 @@
+﻿@*@using Akcija_prodaja.Models
+@using System.Web.Mvc;
+@model List<OglasModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (@Html.BeginForm("Popis", "Oglas", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-group">
+        @Html.Label("Naziv", new { @class = "sr-only" })
+        @Html.TextBox("Naziv", "", new { @class = "form-control", placeholder = "Naziv oglasa" })
+    </div>
+}
+<br />
+<table class="table">
+    <tr>
+        <th>Naziv artikla</th>
+        <th>Osnovna cijena</th>
+        <th>Mjerna jedinica</th>
+        <th>Postotak popusta</th>
+        <th>Akcijska cijena</th>
+        <th>Kratki opis</th>
+        <th>Dugi opis</th>
+        <th>Slika</th>
+    </tr>
+    @foreach (OglasModel o in Model)
+    {
+    <tr>
+        <td>@o.naziv_artikla</td>
+        <td>@o.osnovna_cijena</td>
+        <td>@o.mjerna_jedinica</td>
+        <td>@o.postotak_popusta</td>
+        <td>@o.akcijska_cijena</td>
+        <td>@o.kratki_opis</td>
+        <td>@o.dugi_opis</td>
+        <td>@o.slika</td>
+        @*<td>
+            @Html.ActionLink("Više", "Detaljno", new { id = s.Id }) |
+            @Html.ActionLink("Ažuriraj", "Azuriraj", new { id = s.Id }) |
+            @Html.ActionLink("Obriši", "Obrisi", new { id = s.Id })
+        </td>*@
+  @*  </tr>
+    }
+</table>
+<p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>*@
+

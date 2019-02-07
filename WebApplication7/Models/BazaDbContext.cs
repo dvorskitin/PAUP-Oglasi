@@ -15,6 +15,9 @@ namespace Akcija_prodaja.BazaContext
 
         public DbSet<OglasModel> Oglasi { get; set; }
 
+        public DbSet<AkcijaModel> Akcije { get; set; }
+
+
        
 
 

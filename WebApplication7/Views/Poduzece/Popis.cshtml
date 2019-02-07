@@ -1,0 +1,45 @@
+﻿@using Akcija_prodaja.Models
+@using System.Web.Mvc;
+@model List<PoduzeceModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (@Html.BeginForm("Popis", "Poduzece", FormMethod.Get, new { @class = "form-inline" }))
+{
+<div class="form-group">
+    @Html.Label("Naziv", new { @class = "sr-only" })
+    @Html.TextBox("Naziv", "", new { @class = "form-control", placeholder = "Naziv poduzeca" })
+</div>
+}
+<br />
+<table class="table">
+    <tr>
+        <th>Naziv</th>
+        <th>Adresa</th>
+        <th>Grad</th>
+        <th>Telefon</th>
+        <th>E-mail</th>
+        <th>Web adresa</th>
+    </tr>
+    @foreach (PoduzeceModel p in Model)
+    {
+    <tr>
+        <td>@p.naziv_poduzece</td>
+        <td>@p.adresa</td>
+        <td>@p.grad</td>
+        <td>@p.telefon</td>
+        <td>@p.email</td>
+        <td>@p.web_adresa</td>
+        @*<td>
+            @Html.ActionLink("Više", "Detaljno", new { id = s.Id }) |
+            @Html.ActionLink("Ažuriraj", "Azuriraj", new { id = s.Id }) |
+            @Html.ActionLink("Obriši", "Obrisi", new { id = s.Id })
+        </td>*@
+    </tr>
+    }
+</table>
+<p>@Html.ActionLink("Povratak", "PocetnaStranica","Pocetna")</p>
+
