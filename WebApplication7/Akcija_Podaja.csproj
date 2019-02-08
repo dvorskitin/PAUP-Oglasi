@@ -258,6 +258,7 @@
     <Content Include="Views\Poduzece\Popis.cshtml" />
     <Content Include="Views\Poduzece\DodavanjePoduzeca.cshtml" />
     <Content Include="Views\Oglas\PopisOglasa.cshtml" />
+    <Content Include="Views\Poduzece\UredivanjePoduzeca.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

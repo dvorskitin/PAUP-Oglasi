@@ -1,4 +1,4 @@
-﻿@*@using Akcija_prodaja.Models
+﻿@using Akcija_prodaja.Models
 @using System.Web.Mvc;
 @model List<OglasModel>
 
@@ -36,14 +36,12 @@
         <td>@o.akcijska_cijena</td>
         <td>@o.kratki_opis</td>
         <td>@o.dugi_opis</td>
-        <td>@o.slika</td>
-        @*<td>
-            @Html.ActionLink("Više", "Detaljno", new { id = s.Id }) |
-            @Html.ActionLink("Ažuriraj", "Azuriraj", new { id = s.Id }) |
-            @Html.ActionLink("Obriši", "Obrisi", new { id = s.Id })
-        </td>*@
-  @*  </tr>
+        <td>@o.slika_proizvoda</td>
+        <td>
+         @Html.ActionLink("Uredi", "UredivanjeOglasa", new { id = o.id_oglas }) 
+        </td>
+    </tr>
     }
 </table>
-<p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>*@
+<p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>
 

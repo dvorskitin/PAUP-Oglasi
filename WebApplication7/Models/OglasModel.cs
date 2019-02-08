@@ -33,6 +33,6 @@ namespace Akcija_prodaja.Models
 
         public string kategorija_proizvoda { get; set; }
 
-        public long slika { get; set; }
+        public Byte[] slika_proizvoda { get; set; }
     }
 }

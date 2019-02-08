@@ -99,5 +99,65 @@ namespace WebApplication7.Controllers
             return View(p);
         }
 
+
+        [HttpGet]
+        public ActionResult UredivanjePoduzeca(int? id,PoduzeceModel p)
+        {
+
+            if (id !=p.id_poduzece)
+            {
+ 
+                p = new PoduzeceModel();
+            }
+            else
+            {
+                p = baza.Poduzeca.Find(id);
+                if (p == null)
+                {
+                    return HttpNotFound();
+
+                }
+            }
+
+            List<PoduzeceModel> poduzeca = baza.Poduzeca.ToList();
+            poduzeca.Add(new PoduzeceModel { id_poduzece=0, naziv_poduzece = "Nedefinirano" });
+            ViewBag.Poduzeca = poduzeca;
+            ViewBag.Title = "Ažuriranje podataka o poduzecu";
+            return View(p);
+        }
+
+
+        [HttpPost]
+        public ActionResult UredivanjePoduzeca(PoduzeceModel p)
+        {
+  
+
+
+            // provjera ispravnosti podataka
+            if (ModelState.IsValid)
+            {
+                if (p.id_poduzece != 0)
+                {
+                    // ažuriranje
+                    baza.Entry(p).State =
+                        EntityState.Modified;
+                }
+                else
+                {
+                    // upis
+                    baza.Poduzeca.Add(p);
+                }
+                baza.SaveChanges();
+                //redirekcija
+                return RedirectToAction("Popis");
+            }
+
+            List<PoduzeceModel> poduzeca = baza.Poduzeca.ToList();
+            poduzeca.Add(new PoduzeceModel {id_poduzece=0,  naziv_poduzece = "Nedefinirano" });
+            ViewBag.Poduzeca = poduzeca;
+            ViewBag.Title = "Ažuriranje podataka o poduzecu";
+            return View(p);
+        }
+    
     }
 }

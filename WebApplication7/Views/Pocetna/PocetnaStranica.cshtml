@@ -2,6 +2,15 @@
 @{
     ViewBag.Title = "PocetnaStranica";
 }
+<div>
+    <h2 align="center">Dobro došli na početnu stranicu!</h2>
+</div>
 
-<h2>Dobro došli na početnu stranicu!</h2>
+<h4 align="center">Odaberite željenu radnju:</h4>
+<div align="center">
+    <button type="button" onclick="location.href='@Url.Action("Popis","Poduzece")'">Popis poduzeca</button>
+    <button type="button" onclick="location.href='@Url.Action("DodavanjePoduzeca","Poduzece")'">Dodavanje novog poduzeca</button>
 
+
+
+</div>

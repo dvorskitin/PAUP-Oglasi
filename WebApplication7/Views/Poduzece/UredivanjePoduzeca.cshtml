@@ -1,0 +1,78 @@
+﻿@using Akcija_prodaja.Models
+@model PoduzeceModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title @Model.naziv_poduzece </h2>
+<br />
+@using (Html.BeginForm())
+{
+    // @Html.AntiForgeryToken()  generates a hidden form anti-forgery
+    // token that must match in the Edit method of the Movies controller.
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <table class=" table">
+            <tr>
+                <td>@Html.LabelFor(model => model.id_poduzece, new { @class = "control-label" })</td>
+                <td>@Html.TextBoxFor(model => model.id_poduzece, new { disabled = true, @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.naziv_poduzece, new { @class = "control-label" })</td>
+                <td>
+                    @Html.EditorFor(model => model.naziv_poduzece, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.naziv_poduzece, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.adresa, new { @class = "control-label" })</td>
+                <td>
+                    @Html.EditorFor(model => model.adresa, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.adresa, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.grad, new { @class = "control-label" })</td>
+                <td>
+                    @Html.EditorFor(model => model.grad, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.grad, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr>
+                <td>@Html.LabelFor(model => model.telefon, new { @class = "control-label" })</td>
+                <td>
+                    @Html.EditorFor(model => model.telefon, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.telefon, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.email, new { @class = "control-label" }) </td>
+                <td>
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.web_adresa, new { @class = "control-label" })</td>
+                <td>
+                    @Html.EditorFor(model => model.web_adresa, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.web_adresa, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p>
+        @Html.ValidationSummary(true,
+                  "Spremanje nije uspjelo. Popravite potrebne podatke i pokušajte ponovno!", new { @class = "text-danger" })
+    </p>
+    // Submit (save) tipka
+    <p><input type="submit" value="Spremi" class="btn btn-default" /></p>
+    @Html.ActionLink("Povratak na početak bez spremanja", "Popis", new { @class = "btn btn-link" })
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
