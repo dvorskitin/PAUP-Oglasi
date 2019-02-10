@@ -16,7 +16,7 @@
         <table class=" table">
             <tr>
                 <td>@Html.LabelFor(model => model.id_poduzece, new { @class = "control-label" })</td>
-                <td>@Html.TextBoxFor(model => model.id_poduzece, new { disabled = true, @class = "form-control" })</td>
+                <td>@Html.HiddenFor(model => model.id_poduzece, new { disabled = false, @class = "form-control" })</td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(model => model.naziv_poduzece, new { @class = "control-label" })</td>

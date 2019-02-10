@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity.Migrations;
 
 namespace WebApplication7.Controllers
 {
@@ -62,7 +63,7 @@ namespace WebApplication7.Controllers
                     return HttpNotFound();
                 }
             }
-
+           
             List<PoduzeceModel> poduzece = baza.Poduzeca.ToList();
             poduzece.Add(new PoduzeceModel {  naziv_poduzece= "Nedefinirano" });
             ViewBag.Poduzece = poduzece;
@@ -83,13 +84,17 @@ namespace WebApplication7.Controllers
 
                     baza.Entry(p).State =
                         EntityState.Modified;
+                   
                 }
                 else
                 {
                     // upis
                     baza.Poduzeca.Add(p);
+                    
                 }
+               
                 baza.SaveChanges();
+               
                 return RedirectToAction("Popis");
             }
             List<PoduzeceModel> poduzece = baza.Poduzeca.ToList();
@@ -101,13 +106,13 @@ namespace WebApplication7.Controllers
 
 
         [HttpGet]
-        public ActionResult UredivanjePoduzeca(int? id,PoduzeceModel p)
+        public ActionResult UredivanjePoduzeca(int? id)
         {
-
-            if (id !=p.id_poduzece)
+            PoduzeceModel p;
+            if (id ==null)
             {
  
-                p = new PoduzeceModel();
+               p = new PoduzeceModel();
             }
             else
             {
@@ -118,10 +123,6 @@ namespace WebApplication7.Controllers
 
                 }
             }
-
-            List<PoduzeceModel> poduzeca = baza.Poduzeca.ToList();
-            poduzeca.Add(new PoduzeceModel { id_poduzece=0, naziv_poduzece = "Nedefinirano" });
-            ViewBag.Poduzeca = poduzeca;
             ViewBag.Title = "Ažuriranje podataka o poduzecu";
             return View(p);
         }
@@ -130,8 +131,8 @@ namespace WebApplication7.Controllers
         [HttpPost]
         public ActionResult UredivanjePoduzeca(PoduzeceModel p)
         {
-  
 
+           
 
             // provjera ispravnosti podataka
             if (ModelState.IsValid)
@@ -139,22 +140,21 @@ namespace WebApplication7.Controllers
                 if (p.id_poduzece != 0)
                 {
                     // ažuriranje
-                    baza.Entry(p).State =
-                        EntityState.Modified;
+                    baza.Poduzeca.AddOrUpdate(p);
+                    
+
                 }
                 else
                 {
                     // upis
                     baza.Poduzeca.Add(p);
                 }
+               
                 baza.SaveChanges();
                 //redirekcija
                 return RedirectToAction("Popis");
             }
 
-            List<PoduzeceModel> poduzeca = baza.Poduzeca.ToList();
-            poduzeca.Add(new PoduzeceModel {id_poduzece=0,  naziv_poduzece = "Nedefinirano" });
-            ViewBag.Poduzeca = poduzeca;
             ViewBag.Title = "Ažuriranje podataka o poduzecu";
             return View(p);
         }

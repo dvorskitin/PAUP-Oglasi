@@ -31,8 +31,9 @@ namespace Akcija_prodaja.Models
 
         public string dugi_opis { get; set; }
 
-        public string kategorija_proizvoda { get; set; }
-
         public Byte[] slika_proizvoda { get; set; }
+
+        public int id_kategorija { get; set; }
+
     }
 }
