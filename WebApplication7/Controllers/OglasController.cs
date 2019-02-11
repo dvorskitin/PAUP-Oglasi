@@ -23,25 +23,26 @@ namespace WebApplication7.Controllers
         {
             return View(baza.Oglasi.ToList());
         }
-
-
+       
         private bool TraziKorisnike(KorisnikModel k)
         {
             return false;
         }
 
+       
         public ActionResult Popis(int? id, string oglas)
         {
+            KategorijaModel k = new KategorijaModel();
             List<OglasModel> popis = baza.Oglasi.ToList();
 
-            if (id != 0)
-            {
-                popis = popis.Where(
-                           st => (st.id_oglas).ToString().
-                               Contains(id.ToString())).
-                               OrderBy(st => st.id_oglas.ToString()).ToList();
-            }
-
+                if (id != 0)
+                {
+                    popis = popis.Where(
+                               st => (st.id_oglas).ToString().
+                                   Contains(id.ToString())).
+                                   OrderBy(st => st.id_oglas.ToString()).ToList();
+                }
+            
             ViewBag.Title = "Popis oglasa";
             return View(popis);
         }

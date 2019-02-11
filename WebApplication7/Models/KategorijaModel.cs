@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace WebApplication7.Models
+namespace Akcija_prodaja.Models
 {
     [Table("kategorija")]
     public class KategorijaModel
@@ -13,7 +13,7 @@ namespace WebApplication7.Models
         [Key]
         public int id_kategorija {get; set;}
 
-        public string naziv_kategorija { get; set; }
+        public string naziv_kategorije { get; set; }
 
     }
 }

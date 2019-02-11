@@ -1,0 +1,95 @@
+﻿using Akcija_prodaja.BazaContext;
+using Akcija_prodaja.Models;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace WebApplication7.Controllers
+{
+    public class KategorijaController : Controller
+    {
+        private BazaDbContext baza = new BazaDbContext();
+        public ActionResult Index()
+        {
+            ViewBag.Title = "Baza kategorija";
+            return View();
+        }
+        public ActionResult PopisKategorija(string naziv, string kategorija)
+        {
+            List<KategorijaModel> popis = baza.Kategorije.ToList();
+
+            if (!String.IsNullOrEmpty(naziv))
+            {
+                popis = popis.Where(
+                       st => (st.naziv_kategorije).ToUpper().
+                           Contains(naziv.ToUpper())).
+                           OrderBy(st => st.naziv_kategorije).ToList();
+            }
+            ViewBag.Title = "Popis kategorija";
+            return View(popis);
+        }
+
+
+        [HttpGet]
+        public ActionResult DodavanjeKategorija(int? id)
+        {
+            KategorijaModel k;
+            if (id == null)
+            {
+                k = new KategorijaModel();
+            }
+            else
+            {
+                k = baza.Kategorije.Find(id);
+                if (k == null)
+                {
+                    return HttpNotFound();
+                }
+            }
+
+            List<KategorijaModel> kategorija = baza.Kategorije.ToList();
+            kategorija.Add(new KategorijaModel { naziv_kategorije = "Nedefinirano" });
+            ViewBag.Kategorije = kategorija;
+            ViewBag.Title = "Dodavanje nove kategorije";
+            return View(k);
+        }
+
+
+        [HttpPost]
+        public ActionResult DodavanjeKategorija(KategorijaModel k)
+        {
+
+            if (ModelState.IsValid)
+            {
+                if (k.id_kategorija != 0)
+                {
+                    // ažuriranje
+
+                    baza.Entry(k).State =
+                        EntityState.Modified;
+
+                }
+                else
+                {
+                    // upis
+                    baza.Kategorije.Add(k);
+
+                }
+
+                baza.SaveChanges();
+
+                return RedirectToAction("PopisKategorija");
+            }
+            List<KategorijaModel> kategorija = baza.Kategorije.ToList();
+            kategorija.Add(new KategorijaModel { naziv_kategorije = "Nedefinirano" });
+            ViewBag.Kategorije = kategorija;
+            ViewBag.Title = "Dodavanje nove kategorije";
+            return View(k);
+        }
+           
+        
+    }
+}

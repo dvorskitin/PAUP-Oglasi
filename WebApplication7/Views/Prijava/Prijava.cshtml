@@ -14,17 +14,13 @@
 
     <div class="form-signin">
 
-        @*<div class="text-center">
-            <img src="~/Logo/logo.png" id="logoimg" alt=" Logo" />
-        </div>*@
+        <p></p>
+        <p></p>
+        <h4 class="text-left text-danger">Prijava:</h4>
 
         <p></p>
         <p></p>
-        <h4 class="text-left">PRIJAVA</h4>
-
-        <p></p>
-        <p></p>
-        <p class="text-primary">Upišite korisničko ime:</p>
+        <p class="text-primary">Upišite e-mail adresu:</p>
         @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", placeholder = "E-mail adresa" } })
         @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
 
@@ -39,7 +35,7 @@
         <p></p>
         <p></p>
 
-        <p><input type="submit" value="Prijavi se" class="btn btn-primary" /></p>
+        <p><input type="submit" value="Prijavi se" class="btn btn-info" /></p>
     }
 
 </div>

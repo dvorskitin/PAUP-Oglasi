@@ -1,0 +1,42 @@
+﻿@using Akcija_prodaja.Models
+@model KategorijaModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title @Model.naziv_kategorije</h2>
+<br />
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <table class=" table">
+            <tr>
+                <td>@Html.LabelFor(model => model.id_kategorija, new { @class = "control-label" })</td>
+                <td>@Html.TextBoxFor(model => model.id_kategorija, new { disabled = true, @class = "form-control" })</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.naziv_kategorije, new { @class = "control-label" })</td>
+                <td>
+                    @Html.EditorFor(model => model.naziv_kategorije, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.naziv_kategorije, "", new { @class = "text-danger" })
+                </td>
+          
+
+        </table>
+    </div>
+    <p>
+        @Html.ValidationSummary(true,
+                  "Spremanje nije uspjelo. Popravite potrebne podatke i pokušajte ponovno!", new { @class = "text-danger" })
+    </p>
+
+    <p><input type="submit" value="Spremi" class="btn btn-primary" /></p>
+    @Html.ActionLink("Povratak na početak bez spremanja", "PopisKategorija", new { @class = "btn btn-link" })
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
+
 namespace Akcija_prodaja.BazaContext
 {
     public class BazaDbContext : DbContext
@@ -16,6 +17,8 @@ namespace Akcija_prodaja.BazaContext
         public DbSet<OglasModel> Oglasi { get; set; }
 
         public DbSet<AkcijaModel> Akcije { get; set; }
+
+        public DbSet<KategorijaModel> Kategorije { get; set; }
 
 
        

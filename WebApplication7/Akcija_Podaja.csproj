@@ -201,6 +201,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KategorijaController.cs" />
     <Compile Include="Controllers\OglasController.cs" />
     <Compile Include="Controllers\PocetnaController.cs" />
     <Compile Include="Controllers\PoduzeceController.cs" />
@@ -218,6 +219,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-lumen.css" />
+    <Content Include="Content\bootstrap-yeti.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -260,6 +263,8 @@
     <Content Include="Views\Poduzece\DodavanjePoduzeca.cshtml" />
     <Content Include="Views\Oglas\PopisOglasa.cshtml" />
     <Content Include="Views\Poduzece\UredivanjePoduzeca.cshtml" />
+    <Content Include="Views\Kategorija\DodavanjeKategorija.cshtml" />
+    <Content Include="Views\Kategorija\PopisKategorija.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
