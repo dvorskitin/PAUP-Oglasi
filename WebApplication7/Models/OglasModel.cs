@@ -17,8 +17,10 @@ namespace Akcija_prodaja.Models
 
         public int id_akcija { get; set; }
 
+        [DataType(DataType.Text)]
         public string naziv_artikla { get; set; }
 
+        
         public double osnovna_cijena { get; set; }
 
         public decimal mjerna_jedinica { get; set; }

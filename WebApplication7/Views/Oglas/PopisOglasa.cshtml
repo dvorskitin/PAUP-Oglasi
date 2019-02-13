@@ -11,7 +11,6 @@
 {
     <div class="form-group">
         @Html.Label("Naziv", new { @class = "sr-only" })
-        @Html.TextBox("Naziv", "", new { @class = "form-control", placeholder = "Naziv oglasa" })
     </div>
 }
 <br />
@@ -37,9 +36,9 @@
         <td>@o.kratki_opis</td>
         <td>@o.dugi_opis</td>
         <td>@o.slika_proizvoda</td>
-        <td>
+        @*<td>
          @Html.ActionLink("Uredi", "UredivanjeOglasa", new { id = o.id_oglas }) 
-        </td>
+        </td>*@
     </tr>
     }
 </table>

@@ -262,7 +262,7 @@
     <Content Include="Views\Poduzece\Popis.cshtml" />
     <Content Include="Views\Poduzece\DodavanjePoduzeca.cshtml" />
     <Content Include="Views\Oglas\PopisOglasa.cshtml" />
-    <Content Include="Views\Poduzece\UredivanjePoduzeca.cshtml" />
+    <Content Include="Views\Poduzece\UrediPoduzece.cshtml" />
     <Content Include="Views\Kategorija\DodavanjeKategorija.cshtml" />
     <Content Include="Views\Kategorija\PopisKategorija.cshtml" />
   </ItemGroup>

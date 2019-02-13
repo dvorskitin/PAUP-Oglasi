@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity.Migrations;
+using System.Net;
 
 namespace WebApplication7.Controllers
 {
@@ -105,59 +106,119 @@ namespace WebApplication7.Controllers
         }
 
 
+        //[HttpGet]
+        //public ActionResult UredivanjePoduzeca(int? id)
+        //{
+        //    PoduzeceModel p;
+        //    if (id ==null)
+        //    {
+
+        //       p = new PoduzeceModel();
+        //    }
+        //    else
+        //    {
+        //        p = baza.Poduzeca.Find(id);
+        //        if (p == null)
+        //        {
+        //            return HttpNotFound();
+
+        //        }
+        //    }
+        //    ViewBag.Title = "Ažuriranje podataka o poduzecu";
+        //    return View(p);
+        //}
+
+
+        //[HttpPost]
+        //public ActionResult UredivanjePoduzeca(PoduzeceModel p)
+        //{
+
+
+
+        //    // provjera ispravnosti podataka
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (p.id_poduzece != 0)
+        //        {
+        //            // ažuriranje
+        //            baza.Poduzeca.AddOrUpdate(p);
+
+
+        //        }
+        //        else
+        //        {
+        //            // upis
+        //            baza.Poduzeca.Add(p);
+        //        }
+
+        //        baza.SaveChanges();
+        //        //redirekcija
+        //        return RedirectToAction("Popis");
+        //    }
+
+        //    ViewBag.Title = "Ažuriranje podataka o poduzecu";
+        //    return View(p);
+        //}
+
         [HttpGet]
-        public ActionResult UredivanjePoduzeca(int? id)
+        public ActionResult UrediPoduzece(int id)
         {
-            PoduzeceModel p;
-            if (id ==null)
+           
+            PoduzeceModel p = new PoduzeceModel();
+            foreach (PoduzeceModel pod in baza.Poduzeca)
             {
- 
-               p = new PoduzeceModel();
+                if (pod.id_poduzece == id)
+                {
+
+                    p = pod;
+                }
+            }
+
+            if (p == null)
+            {
+                return HttpNotFound();
+
+            }
+            if (Request.IsAjaxRequest())
+
+            {
+                ViewBag.IsUpdate = false;
+
+                return View("UrediPoduzece", p);
+            }
+            else
+                return View("UrediPoduzece", p);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult UrediPoduzece([Bind(Include = "id_poduzece, naziv_poduzece,adresa, grad, telefon, email, web_adresa")] PoduzeceModel pod)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView("UrediPoduzece", pod);
+
+            }
+
+             PoduzeceModel P = baza.Poduzeca.Where(
+
+              x => x.id_poduzece == pod.id_poduzece).SingleOrDefault();
+
+            if (pod.id_poduzece != 0 && P != null)// update
+            {
+                baza.Entry(P).CurrentValues.SetValues(pod);
             }
             else
             {
-                p = baza.Poduzeca.Find(id);
-                if (p == null)
-                {
-                    return HttpNotFound();
-
-                }
+                baza.Poduzeca.Add(pod);
             }
-            ViewBag.Title = "Ažuriranje podataka o poduzecu";
-            return View(p);
-        }
-
-
-        [HttpPost]
-        public ActionResult UredivanjePoduzeca(PoduzeceModel p)
-        {
-
-           
-
-            // provjera ispravnosti podataka
-            if (ModelState.IsValid)
+            baza.SaveChanges();
+            if (Request.IsAjaxRequest())                       
             {
-                if (p.id_poduzece != 0)
-                {
-                    // ažuriranje
-                    baza.Poduzeca.AddOrUpdate(p);
-                    
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
 
-                }
-                else
-                {
-                    // upis
-                    baza.Poduzeca.Add(p);
-                }
-               
-                baza.SaveChanges();
-                //redirekcija
-                return RedirectToAction("Popis");
             }
-
-            ViewBag.Title = "Ažuriranje podataka o poduzecu";
-            return View(p);
+            return RedirectToAction("Popis");
         }
-    
     }
 }
