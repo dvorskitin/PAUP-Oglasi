@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -89,7 +90,66 @@ namespace WebApplication7.Controllers
             ViewBag.Title = "Dodavanje nove kategorije";
             return View(k);
         }
-           
-        
+        [HttpGet]
+        public ActionResult UrediKategoriju(int id)
+        {
+
+            KategorijaModel k = new KategorijaModel();
+            foreach (KategorijaModel kat in baza.Kategorije)
+            {
+                if (kat.id_kategorija == id)
+                {
+
+                    k = kat;
+                }
+            }
+
+            if (k == null)
+            {
+                return HttpNotFound();
+
+            }
+            if (Request.IsAjaxRequest())
+
+            {
+                ViewBag.IsUpdate = false;
+
+                return View("UrediKategoriju", k);
+            }
+            else
+                return View("UrediKategoriju", k);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult UrediKategoriju([Bind(Include = "id_kategorija, naziv_kategorije")] KategorijaModel kat)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView("UrediKategoriju", kat);
+
+            }
+
+            KategorijaModel K = baza.Kategorije.Where(
+
+             x => x.id_kategorija == kat.id_kategorija).SingleOrDefault();
+
+            if (kat.id_kategorija != 0 && K != null)
+            {
+                baza.Entry(K).CurrentValues.SetValues(kat);
+            }
+            else
+            {
+                baza.Kategorije.Add(kat);
+            }
+            baza.SaveChanges();
+            if (Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+
+            }
+            return RedirectToAction("PopisKategorija");
+        }
     }
+
 }

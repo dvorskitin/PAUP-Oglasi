@@ -21,7 +21,8 @@ namespace Akcija_prodaja.BazaContext
         public DbSet<KategorijaModel> Kategorije { get; set; }
 
 
-       
+
+
 
 
 

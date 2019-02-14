@@ -24,7 +24,7 @@ namespace WebApplication7
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-lumen.css",
+                      "~/Content/bootstrap-new.css",
                       "~/Content/site.css"));
         }
     }

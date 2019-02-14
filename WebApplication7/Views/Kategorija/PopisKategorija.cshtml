@@ -10,6 +10,7 @@
 @using (@Html.BeginForm("PopisKategorija", "Kategorija", FormMethod.Get, new { @class = "form-inline" }))
 {
     <div class="form-group">
+        
         @Html.Label("Naziv", new { @class = "sr-only" })
 
     </div>
@@ -23,9 +24,10 @@
     @foreach (KategorijaModel k in Model)
     {
         <tr>
+            
             <td>@k.naziv_kategorije</td>
             <td>
-          
+                <p>@Html.ActionLink("Uredi", "UrediKategoriju", new {id=k.id_kategorija})</p>
             </td>
         </tr>
     }

@@ -1,0 +1,40 @@
+﻿@using Akcija_prodaja.Models
+@using System.Web.Mvc;
+@model List<AkcijaModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (@Html.BeginForm("PopisAkcija", "Akcija", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-group">
+        @Html.Label("Naziv", new { @class = "sr-only" })
+
+    </div>
+}
+<br />
+<table class="table">
+    <tr>
+        <th>Naziv</th>
+        <th>Datum početka</th>
+        <th>Datum završetka</th>
+        <th>Opis</th>
+
+    </tr>
+    @foreach (AkcijaModel a in Model)
+    {
+        <tr>
+            <td>@a.naziv_akcija</td>
+            <td>@a.datum_pocetka</td>
+            <td>@a.datum_zavrsetka</td>
+            <td>@a.opis</td>
+        </tr>
+
+    }
+</table>
+<p>@Html.ActionLink("Dodavanje nove akcije", "DodavanjeAkcija", "Akcija")</p>
+<p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>
+
+

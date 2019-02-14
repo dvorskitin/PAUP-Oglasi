@@ -1,6 +1,6 @@
 ﻿@using Akcija_prodaja.Models
 @using System.Web.Mvc;
-@model List<OglasModel>
+@model List<oglas_kategorija>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,24 +23,45 @@
         <th>Akcijska cijena</th>
         <th>Kratki opis</th>
         <th>Dugi opis</th>
-        <th>Slika</th>
+        <th>Kategorija</th>
+        <th>Akcije</th>
     </tr>
-    @foreach (OglasModel o in Model)
+    @foreach (oglas_kategorija o in Model)
     {
-    <tr>
-        <td>@o.naziv_artikla</td>
-        <td>@o.osnovna_cijena</td>
-        <td>@o.mjerna_jedinica</td>
-        <td>@o.postotak_popusta</td>
-        <td>@o.akcijska_cijena</td>
-        <td>@o.kratki_opis</td>
-        <td>@o.dugi_opis</td>
-        <td>@o.slika_proizvoda</td>
-        @*<td>
-         @Html.ActionLink("Uredi", "UredivanjeOglasa", new { id = o.id_oglas }) 
-        </td>*@
-    </tr>
+        <tr>
+            <td>@o.oglas.naziv_artikla</td>
+            <td>@o.oglas.osnovna_cijena</td>
+            <td>@o.oglas.mjerna_jedinica</td>
+            <td>@o.oglas.postotak_popusta</td>
+            <td>@o.oglas.akcijska_cijena</td>
+            <td>@o.oglas.kratki_opis</td>
+            <td>@o.oglas.dugi_opis</td>
+            <td>@o.kategorija</td>
+            <td>
+                <a onclick="pokaziModal('@Url.Action("Obrisi", "Oglas", new { id = o.oglas.id_oglas })')" class="btn btn-danger btn-sm">Obriši</a>
+                
+            </td>
+
+        </tr>
     }
 </table>
+@Html.ActionLink("Dodaj novi oglas", "DodavanjeOglasa")
+
 <p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>
 
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" data-backdrop="static">
+    <div id="modalContainer">
+    </div>
+</div>
+<script>
+    function pokaziModal(path) {
+        $.ajax({
+            url: path,
+            success: function (data) {
+                $("#modalContainer").html(data);
+                $('#modal').modal('show');
+            }
+        });
+    }
+</script>

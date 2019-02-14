@@ -1,0 +1,67 @@
+﻿@using Akcija_prodaja.Models
+@model AkcijaModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title @Model.naziv_akcija</h2>
+<br />
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <table class=" table">
+
+            <tr>
+                <td>@Html.LabelFor(model => model.naziv_akcija, new { @class = "control-label" })</td>
+                <td>
+                    @Html.EditorFor(model => model.naziv_akcija, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.naziv_akcija, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.datum_pocetka, new { @class = "control-label" })</td>
+                <td>
+                    @Html.EditorFor(model => model.datum_pocetka, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.datum_pocetka, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.datum_zavrsetka, new { @class = "control-label" })</td>
+                <td>
+
+                    @Html.EditorFor(model => model.datum_zavrsetka, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.datum_zavrsetka, "", new { @class = "text-danger" })
+                </td>
+
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.opis, new { @class = "control-label" })</td>
+                <td>
+                    @Html.EditorFor(model => model.opis, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.opis, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DropDownListFor(model => model.id_poduzece,
+                             new SelectList(ViewBag.Poduzeca, "value", "text"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_poduzece, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p>
+        @Html.ValidationSummary(true,
+                  "Spremanje nije uspjelo. Popravite potrebne podatke i pokušajte ponovno!", new { @class = "text-danger" })
+    </p>
+    // Submit (save) tipka
+    <p><input type="submit" value="Spremi" class="btn btn-primary" /></p>
+    @Html.ActionLink("Povratak na početak bez spremanja", "PopisAkcija", new { @class = "btn btn-link" })
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
