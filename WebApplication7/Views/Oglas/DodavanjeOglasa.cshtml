@@ -97,6 +97,17 @@
                     @Html.ValidationMessageFor(model => model.id_akcija, "", new { @class = "text-danger" })
                 </td>
             </tr>
+            <tr>
+                <td>
+
+                    <span>Select File:</span>
+                    @Html.TextBoxFor(m => m.slika_proizvoda, new { type = "file",id= "fileUpload" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.slika_proizvoda, "", new { @class = "error" })
+                    <hr />
+
+                </td>
+            </tr>
         </table>
     </div>
     <p>
@@ -110,6 +121,11 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-
-
-
+    <script>
+        $(function () {
+            $('#fileUpload').on('change', function () {
+                var filePath = $(this).val();
+                console.log(filePath);
+            });
+        });
+    </script>

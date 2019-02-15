@@ -3,6 +3,7 @@ using Akcija_prodaja.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -14,6 +15,7 @@ namespace WebApplication7.Controllers
     public class OglasController : Controller
     {
         private BazaDbContext baza = new BazaDbContext();
+        private const string TempPath = @"C:\Users\Tin\Radna površina";
 
         public ActionResult Oglas()
         {
@@ -107,9 +109,8 @@ namespace WebApplication7.Controllers
                 }
                 else
                 {
-         
+                    
                     baza.Oglasi.Add(o);
-
                 }
 
                 baza.SaveChanges();
@@ -157,5 +158,6 @@ namespace WebApplication7.Controllers
 
             return RedirectToAction("PopisOglasa");
         }
+
     }
 }

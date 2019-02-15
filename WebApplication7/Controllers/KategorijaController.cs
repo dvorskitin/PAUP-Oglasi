@@ -150,6 +150,48 @@ namespace WebApplication7.Controllers
             }
             return RedirectToAction("PopisKategorija");
         }
+
+
+        public ActionResult ObrisiKategoriju(int id)
+        {
+            KategorijaModel kategorija = baza.Kategorije.Find(id);
+            if (Request.IsAjaxRequest())
+            {
+                ViewBag.IsUpdate = false;
+                return View("ObrisiKategoriju", kategorija);
+            }
+            else
+
+                return View("ObrisiKategoriju", kategorija);
+        }
+
+        [HttpPost, ActionName("ObrisiKategoriju")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ObrisiKategoriju1(int id)
+        {
+            KategorijaModel K = baza.Kategorije.Where(
+              x => x.id_kategorija == id).SingleOrDefault();
+            List<OglasModel> oglasi = baza.Oglasi.Where(o => o.id_kategorija == id).ToList();
+            if (oglasi != null)
+            {
+                foreach (OglasModel og in oglasi)
+                {
+                    baza.Oglasi.Remove(og);
+                    baza.SaveChanges();
+                }
+            }
+                if (K != null)
+            {
+                baza.Kategorije.Remove(K);
+                baza.SaveChanges();
+            }
+            if (Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+
+            return RedirectToAction("PopisKategorija");
+        }
     }
 
 }

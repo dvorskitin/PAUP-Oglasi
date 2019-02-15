@@ -1,48 +1,40 @@
 ﻿@using Akcija_prodaja.Models
 @using System.Web.Mvc;
-@model List<PoduzeceModel>
+@model List<KorisnikModel>
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
-@using (@Html.BeginForm("Popis", "Poduzece", FormMethod.Get, new { @class = "form-inline" }))
+@using (@Html.BeginForm("PopisKorisnika", "Popis", FormMethod.Get, new { @class = "form-inline" }))
 {
     <div class="form-group">
         @Html.Label("Naziv", new { @class = "sr-only" })
-
     </div>
 }
 <br />
 <table class="table">
     <tr>
-        <th>Naziv</th>
-        <th>Adresa</th>
-        <th>Grad</th>
-        <th>Telefon</th>
+        <th>Ime</th>
+        <th>Prezime</th>
         <th>E-mail</th>
-        <th>Web adresa</th>
+
     </tr>
-    @foreach (PoduzeceModel p in Model)
+    @foreach (KorisnikModel k in Model)
     {
         <tr>
-            <td>@p.naziv_poduzece</td>
-            <td>@p.adresa</td>
-            <td>@p.grad</td>
-            <td>@p.telefon</td>
-            <td>@p.email</td>
-            <td>@p.web_adresa</td>
-
-            <td>
-                <a onclick="pokaziModal('@Url.Action("UrediPoduzece", "Poduzece", new { id = p.id_poduzece })')" class="btn btn-primary btn-sm">Uredi</a>
-            </td>
+            <td>@k.ime</td>
+            <td>@k.prezime</td>
+            <td>@k.email</td>
+            <td><a onclick="pokaziModal('@Url.Action("UrediKorisnika", "Korisnik",new { id = k.id_korisnik })')" class="btn btn-success btn-sm">Uredi</a></td>
         </tr>
-
     }
 </table>
-<p>@Html.ActionLink("Dodavanje novog poduzeca", "DodavanjePoduzeca", "Poduzece")</p>
 <p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>
+
+
+<p>@Html.ActionLink("Dodavanje novog korisnika", "DodavanjeKorisnika", "Korisnik")</p>
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" data-backdrop="static">
     <div id="modalContainer">

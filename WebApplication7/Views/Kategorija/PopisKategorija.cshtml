@@ -10,7 +10,7 @@
 @using (@Html.BeginForm("PopisKategorija", "Kategorija", FormMethod.Get, new { @class = "form-inline" }))
 {
     <div class="form-group">
-        
+       
         @Html.Label("Naziv", new { @class = "sr-only" })
 
     </div>
@@ -19,18 +19,36 @@
 <table class="table">
     <tr>
         <th>Naziv kategorije</th>
-
     </tr>
     @foreach (KategorijaModel k in Model)
     {
         <tr>
-            
             <td>@k.naziv_kategorije</td>
             <td>
-                <p>@Html.ActionLink("Uredi", "UrediKategoriju", new {id=k.id_kategorija})</p>
+                <p>@Html.ActionLink("Uredi", "UrediKategoriju", new { id = k.id_kategorija })</p>
+
+            </td>
+            <td>
+                <a onclick="pokaziModalKat('@Url.Action("ObrisiKategoriju", "Kategorija", new { id = k.id_kategorija })')" class="btn btn-danger btn-sm">Obriši</a>
             </td>
         </tr>
     }
 </table>
 <p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>
 
+
+<div class="modal fade" id="modal_kategorija" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" data-backdrop="static">
+    <div id="modalCon">
+    </div>
+</div>
+<script>
+    function pokaziModalKat(path) {
+        $.ajax({
+            url: path,
+            success: function (data) {
+                $("#modalCon").html(data);
+                $('#modal_kategorija').modal('show');
+            }
+        });
+    }
+</script>

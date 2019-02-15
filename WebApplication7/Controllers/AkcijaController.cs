@@ -71,23 +71,25 @@ namespace WebApplication7.Controllers
         [HttpPost]
         public ActionResult DodavanjeAkcija(AkcijaModel a)
         {
+            //int veci = DateTime.Compare(a.datum_pocetka, a.datum_zavrsetka);
+            //if (veci > 0)
+            //    ModelState.AddModelError("datum_zavrsetka", "Datum početka mora biti veći od datuma završetka");
+
 
             if (ModelState.IsValid)
             {
+                
 
                 if (a.id_akcija != 0)
                 {
                     // ažuriranje
-                    if (a.datum_pocetka < a.datum_zavrsetka)
-                        throw new Exception("Datum početka mora biti veći od datuma završetka!");
+                  
                     baza.Entry(a).State =
                         EntityState.Modified;
 
                 }
                 else
                 {
-                    if (a.datum_pocetka < a.datum_zavrsetka)
-                        throw new Exception("Datum početka mora biti veći od datuma završetka!");
                     baza.Akcije.Add(a);
 
                 }

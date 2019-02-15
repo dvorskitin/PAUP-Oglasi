@@ -24,7 +24,9 @@
         <th>Kratki opis</th>
         <th>Dugi opis</th>
         <th>Kategorija</th>
+        <th>Slike</th>
         <th>Akcije</th>
+
     </tr>
     @foreach (oglas_kategorija o in Model)
     {
@@ -37,11 +39,10 @@
             <td>@o.oglas.kratki_opis</td>
             <td>@o.oglas.dugi_opis</td>
             <td>@o.kategorija</td>
+            <td><img src="~/Images/@o.oglas.slika_proizvoda" width="100" height="100" /></td>
             <td>
                 <a onclick="pokaziModal('@Url.Action("Obrisi", "Oglas", new { id = o.oglas.id_oglas })')" class="btn btn-danger btn-sm">Obriši</a>
-                
             </td>
-
         </tr>
     }
 </table>

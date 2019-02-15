@@ -1,6 +1,7 @@
 ﻿using Akcija_prodaja.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,7 @@ namespace Akcija_prodaja.Models
     {
         public OglasModel oglas { get; set; }
 
+        [DisplayName("ID kategorije")]
         public string kategorija { get; set; }
     }
 }

@@ -203,6 +203,7 @@
     <Compile Include="Controllers\AkcijaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KategorijaController.cs" />
+    <Compile Include="Controllers\KorisnikController.cs" />
     <Compile Include="Controllers\OglasController.cs" />
     <Compile Include="Controllers\PocetnaController.cs" />
     <Compile Include="Controllers\PoduzeceController.cs" />
@@ -284,10 +285,15 @@
     <Content Include="Views\Kategorija\UrediKategoriju.cshtml" />
     <Content Include="Views\Akcija\PopisAkcija.cshtml" />
     <Content Include="Views\Akcija\DodavanjeAkcija.cshtml" />
+    <Content Include="Views\Kategorija\ObrisiKategoriju.cshtml" />
+    <Content Include="Views\Korisnik\PopisKorisnika.cshtml" />
+    <Content Include="Views\Korisnik\DodavanjeKorisnika.cshtml" />
+    <Content Include="Views\Korisnik\UrediKorisnika.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\bootswatch\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

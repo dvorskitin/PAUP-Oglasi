@@ -150,7 +150,7 @@ namespace WebApplication7.Controllers
 
               x => x.id_poduzece == pod.id_poduzece).SingleOrDefault();
 
-            if (pod.id_poduzece != 0 && P != null)// update
+            if (pod.id_poduzece != 0 && P != null)
             {
                 baza.Entry(P).CurrentValues.SetValues(pod);
             }
