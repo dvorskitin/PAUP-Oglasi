@@ -1,22 +1,37 @@
 ﻿@model Akcija_prodaja.Models.KorisnikModel
 @using System.Web.Mvc;
 
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+@{
+    Layout = null;
+}
 
 
-<div class="col-sm-4"></div>
-<div class="col-sm-4">
 
-    @using (Html.BeginForm())
-    {
+@using (Html.BeginForm())
+{
 
 
-        @Html.AntiForgeryToken()
 
-    <div class="form-signin">
+    @Html.AntiForgeryToken()
+
+    <div align="center" style="color:darkslateblue">
+        <h2>AKCIJSKA PRODAJA</h2>
+        <p>  </p>
+
+    </div>
+
+
+    <div class="form-signin" align="center">
 
         <p></p>
         <p></p>
-        <h4 class="text-left text-danger">Prijava:</h4>
+        <h4 class="text-align:center text-danger">Prijava:</h4>
 
         <p></p>
         <p></p>
@@ -32,13 +47,25 @@
 
 
     </div>
-        <p></p>
-        <p></p>
 
-        <p><input type="submit" value="Prijavi se" class="btn btn-info" /></p>
-    }
+    <p></p>
+    <p></p>
 
-</div>
+    <p style="text-align:center"><input type="submit" value="Prijavi se" class="btn btn-info" /></p>
+    <p> </p>
+
+    <p style="text-align:center">Molimo prijavite se za nastavak.</p>
+
+}
+
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script type="text/javascript">
+
+    window.onload = window.history.forward(0);  //calling function on window onload
+
+</script>  
