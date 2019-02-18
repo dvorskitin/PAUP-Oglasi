@@ -35,6 +35,7 @@ namespace WebApplication7.Controllers
         [HttpGet]
         public ActionResult DodavanjeKorisnika(int? id)
         {
+
             KorisnikModel k;
             if (id == null)
             {
@@ -48,10 +49,16 @@ namespace WebApplication7.Controllers
                     return HttpNotFound();
                 }
             }
-
+            List<PoduzeceModel> poduzeca = baza.Poduzeca.ToList();
+            List<Object> pod = new List<object>();
+            foreach (PoduzeceModel p in poduzeca)
+            {
+                pod.Add(new { value = p.id_poduzece, text = p.naziv_poduzece });
+            }
             List<KorisnikModel> korisnici = baza.Korisnici.ToList();
             korisnici.Add(new KorisnikModel { ime = "Nedefinirano" });
             ViewBag.Korisnici = korisnici;
+            ViewBag.Poduzeca = pod;
             ViewBag.Title = "Dodavanje novog korisnika";
             return View(k);
         }

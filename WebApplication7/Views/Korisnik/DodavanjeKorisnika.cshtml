@@ -43,7 +43,14 @@
                     @Html.EditorFor(model => model.lozinka, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.lozinka, "", new { @class = "text-danger" })
                 </td>
-            
+
+            </tr>
+            <tr>
+                <td>
+                    @Html.DropDownListFor(model => model.id_poduzece,
+                             new SelectList(ViewBag.Poduzeca, "value", "text"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_poduzece, "", new { @class = "text-danger" })
+                </td>
             </tr>
 
         </table>
