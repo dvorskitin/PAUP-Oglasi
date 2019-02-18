@@ -44,24 +44,19 @@ namespace WebApplication7.Controllers
             {
                 {
 
-                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                    Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
-                    Response.Cache.SetNoStore();
-                    FormsAuthentication.SignOut();
+
                     return View("Prijava");
                 }
             }
         }
 
-        [HttpPost]
+
         public ActionResult Odjava1()
         {
-            Response.Cache.SetCacheability(HttpCacheability.NoCache);
-            Response.Cache.SetExpires(DateTime.Now.AddSeconds(-1));
-            Response.Cache.SetNoStore();
 
+            Sesija.Odjava();
             FormsAuthentication.SignOut();
-            return View("Prijava");
+            return RedirectToAction("Prijava", "Prijava");
 
         }
 
