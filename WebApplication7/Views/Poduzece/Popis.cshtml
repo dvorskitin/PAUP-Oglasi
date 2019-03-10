@@ -36,6 +36,10 @@
 
             <td>
                 <a onclick="pokaziModal('@Url.Action("UrediPoduzece", "Poduzece", new { id = p.id_poduzece })')" class="btn btn-primary btn-sm">Uredi</a>
+               
+            </td>
+            <td>
+                <a onclick="pokaziModal('@Url.Action("ObrisiPoduzece", "Poduzece", new { id = p.id_poduzece })')" class="btn btn-danger btn-sm">Obriši</a>
             </td>
         </tr>
 

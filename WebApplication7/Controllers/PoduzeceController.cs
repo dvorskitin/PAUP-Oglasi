@@ -166,5 +166,38 @@ namespace WebApplication7.Controllers
             }
             return RedirectToAction("Popis");
         }
+
+        public ActionResult ObrisiPoduzece(int id)
+        {
+            PoduzeceModel pod = baza.Poduzeca.Find(id);
+            if (Request.IsAjaxRequest())
+            {
+                ViewBag.IsUpdate = false;
+                return View("ObrisiPoduzece", pod);
+            }
+            else
+
+                return View("ObrisiPoduzece", pod);
+        }
+
+        [HttpPost, ActionName("ObrisiPoduzece")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ObrisiPoduzece1(int id)
+        {
+            PoduzeceModel P = baza.Poduzeca.Where(
+              x => x.id_poduzece == id).SingleOrDefault();
+
+            if (P != null)
+            {
+                baza.Poduzeca.Remove(P);
+                baza.SaveChanges();
+            }
+            if (Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+
+            return RedirectToAction("Popis");
+        }
     }
 }
