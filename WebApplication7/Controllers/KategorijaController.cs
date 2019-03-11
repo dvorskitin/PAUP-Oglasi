@@ -126,7 +126,7 @@ namespace WebApplication7.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("UrediKategoriju", kat);
+                return View("UrediKategoriju", kat);
 
             }
 

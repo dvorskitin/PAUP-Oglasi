@@ -23,12 +23,13 @@
     </tr>
     @foreach (KorisnikModel k in Model)
     {
-        <tr>
-            <td>@k.ime</td>
-            <td>@k.prezime</td>
-            <td>@k.email</td>
-            <td><a onclick="pokaziModal('@Url.Action("UrediKorisnika", "Korisnik",new { id = k.id_korisnik })')" class="btn btn-success btn-sm">Uredi</a></td>
-        </tr>
+    <tr>
+        <td>@k.ime</td>
+        <td>@k.prezime</td>
+        <td>@k.email</td>
+        <td><a onclick="pokaziModal('@Url.Action("UrediKorisnika", "Korisnik",new { id = k.id_korisnik })')" class="btn btn-success btn-sm">Uredi</a></td>
+        <td><a onclick="pokaziModal('@Url.Action("ObrisiKorisnika", "Korisnik",new { id = k.id_korisnik })')" class="btn btn-danger btn-sm">Obriši</a></td>
+    </tr>
     }
 </table>
 <p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>

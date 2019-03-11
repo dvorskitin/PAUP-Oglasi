@@ -31,7 +31,6 @@ namespace Akcija_prodaja.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
         [DisplayName("Broj telefona")]
-        [DataType(DataType.PhoneNumber)]
         public int telefon { get; set; }
 
         [Required(AllowEmptyStrings= false, ErrorMessage = "{0} je obavezan podatak")]

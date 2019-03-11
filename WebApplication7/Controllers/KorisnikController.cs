@@ -156,5 +156,41 @@ namespace WebApplication7.Controllers
             }
             return RedirectToAction("PopisKorisnika");
         }
+
+
+
+        public ActionResult ObrisiKorisnika(int id)
+        {
+            KorisnikModel korisnik= baza.Korisnici.Find(id);
+            if (Request.IsAjaxRequest())
+            {
+                ViewBag.IsUpdate = false;
+                return View("ObrisiKorisnika", korisnik);
+            }
+            else
+
+                return View("ObrisiKorisnika", korisnik);
+        }
+
+        [HttpPost, ActionName("ObrisiKorisnika")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ObrisiKorisnika1(int id)
+        {
+            KorisnikModel K = baza.Korisnici.Where(
+              x => x.id_korisnik == id).SingleOrDefault();
+
+            if (K != null)
+            {
+                baza.Korisnici.Remove(K);
+                baza.SaveChanges();
+            }
+            if (Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+
+            return RedirectToAction("PopisKorisnika");
+        }
+
     }
 }
