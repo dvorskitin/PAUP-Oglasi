@@ -25,12 +25,16 @@
     </tr>
     @foreach (AkcijaModel a in Model)
     {
-        <tr>
-            <td>@a.naziv_akcija</td>
-            <td>@a.datum_pocetka</td>
-            <td>@a.datum_zavrsetka</td>
-            <td>@a.opis</td>
-        </tr>
+    <tr>
+        <td>@a.naziv_akcija</td>
+        <td>@a.datum_pocetka</td>
+        <td>@a.datum_zavrsetka</td>
+        <td>@a.opis</td>
+
+        <td><a onclick="pokaziModal('@Url.Action("UrediAkciju", "Akcija",new { id = a.id_akcija })')" class="btn btn-primary btn-sm">Uredi</a></td>
+
+        <td><a onclick="pokaziModal('@Url.Action("ObrisiAkciju", "Akcija",new { id = a.id_akcija })')" class="btn btn-danger btn-sm">Obriši</a></td>
+    </tr>
 
     }
 </table>
@@ -38,3 +42,18 @@
 <p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>
 
 
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" data-backdrop="static">
+    <div id="modalContainer">
+    </div>
+</div>
+<script>
+    function pokaziModal(path) {
+        $.ajax({
+            url: path,
+            success: function (data) {
+                $("#modalContainer").html(data);
+                $('#modal').modal('show');
+            }
+        });
+    }
+</script>

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -103,6 +104,102 @@ namespace WebApplication7.Controllers
             ViewBag.Akcije = akcije;
             ViewBag.Title = "Dodavanje nove akcije";
             return View(a);
+        }
+
+
+
+        [HttpGet]
+        public ActionResult UrediAkciju(int id)
+        {
+
+            AkcijaModel a = new AkcijaModel();
+            foreach (AkcijaModel akc in baza.Akcije)
+            {
+                if (akc.id_akcija == id)
+                {
+
+                    a = akc;
+                }
+            }
+
+            if (a == null)
+            {
+                return HttpNotFound();
+
+            }
+            if (Request.IsAjaxRequest())
+
+            {
+                ViewBag.IsUpdate = false;
+
+                return View("UrediAkciju", a);
+            }
+            else
+                return View("UrediAkciju", a);
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult UrediAkciju([Bind(Include = "id_poduzece, id_akcija, id_oglas, naziv_akcija, datum_pocetka, datum_zavrsetka , datum_zavrsetka")] AkcijaModel akc)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("UrediAkciju", akc);
+
+            }
+
+            AkcijaModel A = baza.Akcije.Where(
+
+             x => x.id_akcija == akc.id_akcija).SingleOrDefault();
+
+            if (akc.id_akcija != 0 && A != null)
+            {
+                baza.Entry(A).CurrentValues.SetValues(akc);
+            }
+            else
+            {
+                baza.Akcije.Add(akc);
+            }
+            baza.SaveChanges();
+            if (Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+
+            }
+            return RedirectToAction("PopisAkcija");
+        }
+
+        public ActionResult ObrisiAkciju(int id)
+        {
+            AkcijaModel akc = baza.Akcije.Find(id);
+            if (Request.IsAjaxRequest())
+            {
+                ViewBag.IsUpdate = false;
+                return View("ObrisiAkciju", akc);
+            }
+            else
+
+                return View("ObrisiAkciju", akc);
+        }
+
+        [HttpPost, ActionName("ObrisiAkciju")]
+        [ValidateAntiForgeryToken]
+        public ActionResult ObrisiAkciju1(int id)
+        {
+            AkcijaModel A = baza.Akcije.Where(
+              x => x.id_akcija == id).SingleOrDefault();
+
+            if (A != null)
+            {
+                baza.Akcije.Remove(A);
+                baza.SaveChanges();
+            }
+            if (Request.IsAjaxRequest())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+
+            return RedirectToAction("PopisAkcija");
         }
     }
 }

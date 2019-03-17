@@ -330,6 +330,8 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Poduzece\ObrisiPoduzece.cshtml" />
     <Content Include="Views\Korisnik\ObrisiKorisnika.cshtml" />
+    <Content Include="Views\Akcija\ObrisiAkciju.cshtml" />
+    <Content Include="Views\Akcija\UrediAkciju.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
