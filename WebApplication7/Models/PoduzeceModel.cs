@@ -31,7 +31,7 @@ namespace Akcija_prodaja.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
         [DisplayName("Broj telefona")]
-        public int telefon { get; set; }
+        public string telefon { get; set; }
 
         [Required(AllowEmptyStrings= false, ErrorMessage = "{0} je obavezan podatak")]
         [DisplayName("E-mail adresa")]

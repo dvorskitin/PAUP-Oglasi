@@ -140,7 +140,7 @@ namespace WebApplication7.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult UrediAkciju([Bind(Include = "id_poduzece, id_akcija, id_oglas, naziv_akcija, datum_pocetka, datum_zavrsetka , datum_zavrsetka")] AkcijaModel akc)
+        public ActionResult UrediAkciju([Bind(Include = "id_poduzece, id_akcija, id_oglas, naziv_akcija, datum_pocetka, datum_zavrsetka , datum_zavrsetka,opis")] AkcijaModel akc)
         {
             if (!ModelState.IsValid)
             {
