@@ -25,12 +25,12 @@ namespace Akcija_prodaja.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
         public string naziv_akcija { get; set; }
 
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [DisplayName("Datum početka")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
         public DateTime datum_pocetka { get; set; }
 
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
         [DisplayName("Datum završetka")]
         public DateTime datum_zavrsetka { get; set; }

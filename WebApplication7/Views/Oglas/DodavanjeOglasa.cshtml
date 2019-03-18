@@ -35,7 +35,7 @@
             <tr>
                 <td>@Html.LabelFor(model => model.osnovna_cijena, new { @class = "control-label" })</td>
                 <td>
-                    @Html.EditorFor(model => model.osnovna_cijena, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.osnovna_cijena, new { htmlAttributes = new { @min = "0", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.osnovna_cijena, "", new { @class = "text-danger" })
                 </td>
             </tr>
@@ -51,14 +51,14 @@
             <tr>
                 <td>@Html.LabelFor(model => model.postotak_popusta, new { @class = "control-label" })</td>
                 <td>
-                    @Html.EditorFor(model => model.postotak_popusta, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.postotak_popusta, new { htmlAttributes = new { @min = "0", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.postotak_popusta, "", new { @class = "text-danger" })
                 </td>
             </tr>
             <tr>
                 <td>@Html.LabelFor(model => model.akcijska_cijena, new { @class = "control-label" }) </td>
                 <td>
-                    @Html.EditorFor(model => model.akcijska_cijena, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.akcijska_cijena, new { htmlAttributes = new { @min="0", @class = "form-control"} })
                     @Html.ValidationMessageFor(model => model.akcijska_cijena, "", new { @class = "text-danger" })
                 </td>
             </tr>

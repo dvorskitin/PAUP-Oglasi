@@ -72,6 +72,7 @@ namespace WebApplication7.Controllers
         [HttpPost]
         public ActionResult DodavanjeAkcija(AkcijaModel a)
         {
+
             //int veci = DateTime.Compare(a.datum_pocetka, a.datum_zavrsetka);
             //if (veci > 0)
             //    ModelState.AddModelError("datum_zavrsetka", "Datum početka mora biti veći od datuma završetka");
@@ -99,6 +100,7 @@ namespace WebApplication7.Controllers
 
                 return RedirectToAction("PopisAkcija");
             }
+            
             List<AkcijaModel> akcije = baza.Akcije.ToList();
             akcije.Add(new AkcijaModel { naziv_akcija = "Nedefinirano" });
             ViewBag.Akcije = akcije;

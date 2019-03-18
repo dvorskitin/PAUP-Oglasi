@@ -24,7 +24,7 @@
             <tr>
                 <td>@Html.LabelFor(model => model.datum_pocetka, new { @class = "control-label" })</td>
                 <td>
-                    @Html.EditorFor(model => model.datum_pocetka, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.datum_pocetka, new { htmlAttributes = new { @class = "datefield",type="date" } })
                     @Html.ValidationMessageFor(model => model.datum_pocetka, "", new { @class = "text-danger" })
                 </td>
             </tr>
@@ -32,7 +32,7 @@
                 <td>@Html.LabelFor(model => model.datum_zavrsetka, new { @class = "control-label" })</td>
                 <td>
 
-                    @Html.EditorFor(model => model.datum_zavrsetka, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.datum_zavrsetka, new { htmlAttributes = new { @class = "datefield",type="date" } })
                     @Html.ValidationMessageFor(model => model.datum_zavrsetka, "", new { @class = "text-danger" })
                 </td>
 
@@ -40,7 +40,7 @@
             <tr>
                 <td>@Html.LabelFor(model => model.opis, new { @class = "control-label" })</td>
                 <td>
-                    @Html.EditorFor(model => model.opis, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.opis, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.opis, "", new { @class = "text-danger" })
                 </td>
             </tr>
