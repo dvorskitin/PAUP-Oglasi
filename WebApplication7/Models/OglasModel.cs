@@ -30,8 +30,9 @@ namespace Akcija_prodaja.Models
         public double osnovna_cijena { get; set; }
 
         [DisplayName("Mjerna jedinica")]
+        [DataType(DataType.Text)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
-        public decimal mjerna_jedinica { get; set; }
+        public string mjerna_jedinica { get; set; }
 
         [DisplayName("Postotka popusta")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]

@@ -27,13 +27,15 @@ namespace Akcija_prodaja.Models
 
         [DataType(DataType.Date)]
         [DisplayName("Datum početka")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
-        public DateTime datum_pocetka { get; set; }
+        public DateTime? datum_pocetka { get; set; }
 
         [DataType(DataType.Date)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
         [DisplayName("Datum završetka")]
-        public DateTime datum_zavrsetka { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime? datum_zavrsetka { get; set; }
 
         [DisplayName("Opis")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]

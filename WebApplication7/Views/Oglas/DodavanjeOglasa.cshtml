@@ -72,7 +72,7 @@
             <tr>
                 <td>@Html.LabelFor(model => model.dugi_opis, new { @class = "control-label" })</td>
                 <td>
-                    @Html.EditorFor(model => model.dugi_opis, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.dugi_opis, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.dugi_opis, "", new { @class = "text-danger" })
                 </td>
             </tr>

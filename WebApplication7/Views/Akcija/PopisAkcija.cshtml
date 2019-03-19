@@ -27,8 +27,8 @@
     {
     <tr>
         <td>@a.naziv_akcija</td>
-        <td>@a.datum_pocetka</td>
-        <td>@a.datum_zavrsetka</td>
+        <td>@a.datum_pocetka.Value.ToShortDateString()</td>
+        <td>@a.datum_zavrsetka.Value.ToShortDateString()</td>
         <td>@a.opis</td>
 
         <td><a onclick="pokaziModal('@Url.Action("UrediAkciju", "Akcija",new { id = a.id_akcija })')" class="btn btn-primary btn-sm">Uredi</a></td>

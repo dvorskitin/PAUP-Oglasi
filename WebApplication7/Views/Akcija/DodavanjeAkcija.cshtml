@@ -32,7 +32,7 @@
                 <td>@Html.LabelFor(model => model.datum_zavrsetka, new { @class = "control-label" })</td>
                 <td>
 
-                    @Html.EditorFor(model => model.datum_zavrsetka, new { htmlAttributes = new { @class = "datefield",type="date" } })
+                    @Html.EditorFor(model => model.datum_zavrsetka, new { htmlAttributes = new { @class = "datefield",type="date"} })
                     @Html.ValidationMessageFor(model => model.datum_zavrsetka, "", new { @class = "text-danger" })
                 </td>
 
