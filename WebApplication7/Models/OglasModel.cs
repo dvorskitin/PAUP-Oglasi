@@ -36,11 +36,11 @@ namespace Akcija_prodaja.Models
 
         [DisplayName("Postotka popusta")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
-        public decimal postotak_popusta { get; set; }
+        public double postotak_popusta { get; set; }
 
         [DisplayName("Akcijska cijena")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
-        public decimal akcijska_cijena { get; set; }
+        public double akcijska_cijena { get; set; }
 
         [DisplayName("Kratki opis")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]

@@ -102,14 +102,14 @@ namespace WebApplication7.Controllers
             {
                 if (o.id_oglas != 0)
                 {
-
+                    Postotak(o.akcijska_cijena);
                     baza.Entry(o).State =
                         EntityState.Modified;
 
                 }
                 else
                 {
-                    
+                    Postotak(o.akcijska_cijena);
                     baza.Oglasi.Add(o);
                 }
 
@@ -159,5 +159,15 @@ namespace WebApplication7.Controllers
             return RedirectToAction("PopisOglasa");
         }
 
+        public double Postotak(double akcijska)
+        {
+            OglasModel o=new OglasModel();
+
+            o.akcijska_cijena = akcijska;
+            akcijska = ((o.postotak_popusta / (100)) * o.osnovna_cijena);
+            
+            return akcijska;
+        }
     }
+
 }
