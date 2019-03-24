@@ -1,0 +1,54 @@
+﻿@using Akcija_prodaja.Models
+@using System.Web.Mvc;
+@model List<ArtiklModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+@using (@Html.BeginForm("PopisArtikala", "Popis", FormMethod.Get, new { @class = "form-inline" }))
+{
+    <div class="form-group">
+        @Html.Label("Naziv", new { @class = "sr-only" })
+    </div>
+}
+<br />
+<table class="table">
+    <tr>
+        <th>Naziv</th>
+        <th>Cijena</th>
+
+
+    </tr>
+    @foreach (ArtiklModel a in Model)
+    {
+        <tr>
+            <td>@a.naziv_artikl</td>
+            <td>@a.cijena_artikl</td>
+            <td><a onclick="pokaziModal('@Url.Action("UrediArtikl", "Artikl",new { id = a.id_artikl })')" class="btn btn-primary btn-sm">Uredi</a>
+            <a onclick="pokaziModal('@Url.Action("ObrisiArtikl", "Artikl",new { id = a.id_artikl })')" class="btn btn-danger btn-sm">Obriši</a></td>
+        </tr>
+    }
+</table>
+<p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>
+
+
+<p>@Html.ActionLink("Dodavanje novog artikla", "DodavanjeArtikla", "Artikl")</p>
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" data-backdrop="static">
+    <div id="modalContainer">
+    </div>
+</div>
+<script>
+    function pokaziModal(path) {
+        $.ajax({
+            url: path,
+            success: function (data) {
+                $("#modalContainer").html(data);
+                $('#modal').modal('show');
+            }
+        });
+    }
+</script>
+

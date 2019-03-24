@@ -203,6 +203,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AkcijaController.cs" />
+    <Compile Include="Controllers\ArtiklController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KategorijaController.cs" />
     <Compile Include="Controllers\KorisnikController.cs" />
@@ -214,6 +215,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AkcijaModel.cs" />
+    <Compile Include="Models\ArtiklModel.cs" />
     <Compile Include="Models\BazaDbContext.cs" />
     <Compile Include="Models\KategorijaModel.cs" />
     <Compile Include="Models\KorisnikModel.cs" />
@@ -376,6 +378,10 @@
     <Content Include="Views\Akcija\ObrisiAkciju.cshtml" />
     <Content Include="Views\Akcija\UrediAkciju.cshtml" />
     <Content Include="Views\Shared\Date.cshtml" />
+    <Content Include="Views\Artikl\PopisArtikala.cshtml" />
+    <Content Include="Views\Artikl\UrediArtikl.cshtml" />
+    <Content Include="Views\Artikl\DodavanjeArtikla.cshtml" />
+    <Content Include="Views\Artikl\ObrisiArtikl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,6 +3,7 @@ using Akcija_prodaja.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -71,9 +72,11 @@ namespace WebApplication7.Controllers
             List<KategorijaModel> kategorije = baza.Kategorije.ToList();
             List<PoduzeceModel> poduzeca = baza.Poduzeca.ToList();
             List<AkcijaModel> akcije = baza.Akcije.ToList();
+            List<ArtiklModel> artikli = baza.Artikli.ToList();
             List<Object> kat = new List<object>();
             List<Object> pod = new List<object>();
             List<Object> akc = new List<object>();
+            List<Object> art = new List<object>();
             foreach (KategorijaModel k in kategorije)
             {
                 kat.Add(new {value=k.id_kategorija,text=k.naziv_kategorije });
@@ -86,9 +89,14 @@ namespace WebApplication7.Controllers
             {
                 akc.Add(new { value = a.id_akcija, text = a.naziv_akcija });
             }
+            foreach(ArtiklModel ar in artikli)
+            {
+                art.Add(new { value = ar.id_artikl, text = ar.naziv_artikl });
+            }
             ViewBag.Poduzeca = pod;
             ViewBag.Kategorije = kat;
             ViewBag.Akcije = akc;
+            ViewBag.Artikli = art;
             return View(o);
 
         }
@@ -109,6 +117,7 @@ namespace WebApplication7.Controllers
                 }
                 else
                 {
+                    
                     Postotak(o.akcijska_cijena);
                     baza.Oglasi.Add(o);
                 }
@@ -121,7 +130,7 @@ namespace WebApplication7.Controllers
             List<OglasModel> oglas = baza.Oglasi.ToList();
             oglas.Add(new OglasModel { naziv_artikla="Nedefinirano" });
             ViewBag.Oglas = oglas;
-            ViewBag.Title = "Dodavanje novog poduzeca";
+            ViewBag.Title = "Dodavanje novog oglasa";
             
             return View(o);
         }

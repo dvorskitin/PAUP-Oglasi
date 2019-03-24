@@ -20,6 +20,9 @@ namespace Akcija_prodaja.Models
         [DisplayName("ID akcije")]
         public int id_akcija { get; set; }
 
+        [DisplayName("ID artikla")]
+        public int id_artikl { get; set; }
+
         [DataType(DataType.Text)]
         [DisplayName("Naziv artikla")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
@@ -51,11 +54,14 @@ namespace Akcija_prodaja.Models
         public string dugi_opis { get; set; }
 
         [DisplayName("Slika proizvoda")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
         public string slika_proizvoda { get; set; }
 
         [DisplayName("ID kategorije")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
         public int id_kategorija { get; set; }
+
+
 
     }
 }

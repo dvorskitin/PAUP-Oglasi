@@ -25,10 +25,14 @@
 
             @Html.HiddenFor(model => model.id_poduzece, new { disabled = true, @class = "form-control" })
 
+
+            @Html.HiddenFor(model => model.id_artikl, new { disabled = true, @class = "form-control" })
+
+
             <tr>
-                <td>@Html.LabelFor(model => model.naziv_artikla, new { @class = "control-label" })</td>
                 <td>
-                    @Html.EditorFor(model => model.naziv_artikla, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.DropDownListFor(model => model.naziv_artikla,
+                             new SelectList(ViewBag.Artikli, "value", "text"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.naziv_artikla, "", new { @class = "text-danger" })
                 </td>
             </tr>
@@ -58,7 +62,7 @@
             <tr>
                 <td>@Html.LabelFor(model => model.akcijska_cijena, new { @class = "control-label" }) </td>
                 <td>
-                    @Html.EditorFor(model => model.akcijska_cijena, new { htmlAttributes = new { @min="0", @class = "form-control"} })
+                    @Html.EditorFor(model => model.akcijska_cijena, new { htmlAttributes = new { @min = "0", @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.akcijska_cijena, "", new { @class = "text-danger" })
                 </td>
             </tr>
@@ -101,7 +105,7 @@
                 <td>
 
                     <span>Select File:</span>
-                    @Html.TextBoxFor(m => m.slika_proizvoda, new { type = "file",id= "fileUpload" })
+                    @Html.TextBoxFor(m => m.slika_proizvoda, new { type = "picture", id = "fileUpload" })
                     <br />
                     @Html.ValidationMessageFor(m => m.slika_proizvoda, "", new { @class = "error" })
                     <hr />

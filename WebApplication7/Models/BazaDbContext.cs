@@ -20,6 +20,8 @@ namespace Akcija_prodaja.BazaContext
 
         public DbSet<KategorijaModel> Kategorije { get; set; }
 
+        public DbSet<ArtiklModel>Artikli { get; set; }
+
 
 
 

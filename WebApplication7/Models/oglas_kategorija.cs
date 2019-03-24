@@ -11,7 +11,7 @@ namespace Akcija_prodaja.Models
     {
         public OglasModel oglas { get; set; }
 
-        [DisplayName("ID kategorije")]
+        [DisplayName("Kategorija")]
         public string kategorija { get; set; }
     }
 }
