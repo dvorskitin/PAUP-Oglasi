@@ -30,10 +30,11 @@
 
 
             <tr>
+                <td>Artikl</td>
                 <td>
-                    @Html.DropDownListFor(model => model.naziv_artikla,
+                    @Html.DropDownListFor(model => model.id_artikl,
                              new SelectList(ViewBag.Artikli, "value", "text"), new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.naziv_artikla, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.id_artikl, "", new { @class = "text-danger" })
                 </td>
             </tr>
             <tr>
@@ -81,6 +82,7 @@
                 </td>
             </tr>
             <tr>
+                <td>Kategorija</td>
                 <td>
                     @Html.DropDownListFor(model => model.id_kategorija,
                              new SelectList(ViewBag.Kategorije, "value", "text"), new { @class = "form-control" })
@@ -88,6 +90,7 @@
                 </td>
             </tr>
             <tr>
+                <td>Poduzeće</td>
                 <td>
                     @Html.DropDownListFor(model => model.id_poduzece,
                              new SelectList(ViewBag.Poduzeca, "value", "text"), new { @class = "form-control" })
@@ -95,6 +98,7 @@
                 </td>
             </tr>
             <tr>
+                <td>Akcija</td>
                 <td>
                     @Html.DropDownListFor(model => model.id_akcija,
                              new SelectList(ViewBag.Akcije, "value", "text"), new { @class = "form-control" })
@@ -107,7 +111,7 @@
                     <span>Select File:</span>
                     @Html.TextBoxFor(m => m.slika_proizvoda, new { type = "picture", id = "fileUpload" })
                     <br />
-                    @Html.ValidationMessageFor(m => m.slika_proizvoda, "", new { @class = "error" })
+                    @Html.ValidationMessageFor(m => m.slika_proizvoda, "", new { @class = "text-danger"})
                     <hr />
 
                 </td>

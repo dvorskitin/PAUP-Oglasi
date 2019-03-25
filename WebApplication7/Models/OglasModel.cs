@@ -25,40 +25,40 @@ namespace Akcija_prodaja.Models
 
         [DataType(DataType.Text)]
         [DisplayName("Naziv artikla")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
         public string naziv_artikla { get; set; }
 
         [DisplayName("Osnovna cijena")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
         public double osnovna_cijena { get; set; }
 
         [DisplayName("Mjerna jedinica")]
         [DataType(DataType.Text)]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
         public string mjerna_jedinica { get; set; }
 
         [DisplayName("Postotka popusta")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
         public double postotak_popusta { get; set; }
 
         [DisplayName("Akcijska cijena")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
         public double akcijska_cijena { get; set; }
 
         [DisplayName("Kratki opis")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
         public string kratki_opis { get; set; }
 
         [DisplayName("Dugi opis")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
         public string dugi_opis { get; set; }
 
         [DisplayName("Slika proizvoda")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
         public string slika_proizvoda { get; set; }
 
         [DisplayName("ID kategorije")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
         public int id_kategorija { get; set; }
 
 

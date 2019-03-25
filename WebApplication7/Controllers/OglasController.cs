@@ -66,7 +66,7 @@ namespace WebApplication7.Controllers
             }
 
             List<OglasModel> oglas = baza.Oglasi.ToList();
-            oglas.Add(new OglasModel { naziv_artikla = "Nedefinirano" });
+            oglas.Add(new OglasModel { kratki_opis = "Nedefinirano" });
             ViewBag.Oglas = oglas;
             ViewBag.Title = "Dodavanje novog oglasa";
             List<KategorijaModel> kategorije = baza.Kategorije.ToList();

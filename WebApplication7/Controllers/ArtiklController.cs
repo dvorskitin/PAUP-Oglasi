@@ -22,17 +22,17 @@ namespace WebApplication7.Controllers
 
         public ActionResult PopisArtikala(string naziv)
         {
-            List<ArtiklModel> artikli = baza.Artikli.ToList();
+            List<ArtiklModel> popis = baza.Artikli.ToList();
 
             if (!String.IsNullOrEmpty(naziv))
             {
-                artikli = artikli.Where(
+                popis = popis.Where(
                        st => (st.naziv_artikl).ToUpper().
                            Contains(naziv.ToUpper())).
                            OrderBy(st => st.naziv_artikl).ToList();
             }
             ViewBag.Title = "Popis artikala";
-            return View(artikli);
+            return View(popis);
         }
 
 
@@ -65,12 +65,8 @@ namespace WebApplication7.Controllers
         [HttpPost]
         public ActionResult DodavanjeArtikla(ArtiklModel a)
         {
-
-
             if (ModelState.IsValid)
             {
-
-
                 if (a.id_artikl != 0)
                 {
                     // ažuriranje
@@ -91,9 +87,10 @@ namespace WebApplication7.Controllers
 
             List<ArtiklModel> artikli= baza.Artikli.ToList();
             artikli.Add(new ArtiklModel { naziv_artikl = "Nedefinirano" });
-            ViewBag.Artikli = artikli;
+            ViewBag.Artikli  = artikli;
             ViewBag.Title = "Dodavanje novog artikla";
             return View(a);
+    
         }
 
         [HttpGet]
