@@ -23,11 +23,6 @@ namespace Akcija_prodaja.Models
         [DisplayName("ID artikla")]
         public int id_artikl { get; set; }
 
-        [DataType(DataType.Text)]
-        [DisplayName("Naziv artikla")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
-        public string naziv_artikla { get; set; }
-
         [DisplayName("Osnovna cijena")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
         public double osnovna_cijena { get; set; }

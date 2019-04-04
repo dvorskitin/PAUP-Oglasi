@@ -13,5 +13,8 @@ namespace Akcija_prodaja.Models
 
         [DisplayName("Kategorija")]
         public string kategorija { get; set; }
+
+        [DisplayName("artikl")]
+        public string artikl { get; set; }
     }
 }

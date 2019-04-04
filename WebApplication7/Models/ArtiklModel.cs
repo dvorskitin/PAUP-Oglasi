@@ -26,5 +26,7 @@ namespace Akcija_prodaja.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak")]
         public double cijena_artikl { get; set; }
 
+
+
     }
 }

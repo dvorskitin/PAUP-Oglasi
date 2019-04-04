@@ -28,17 +28,24 @@ namespace WebApplication7.Controllers
         public ActionResult PopisOglasa()
         {
             List<oglas_kategorija> oglasi = new List<oglas_kategorija>();
-            
+
+            List<ArtiklModel> artikls = baza.Artikli.ToList();
             List<KategorijaModel> kategorije = baza.Kategorije.ToList();
+      
             foreach (OglasModel k in baza.Oglasi)
             {
                 KategorijaModel data = kategorije.Where(ka => ka.id_kategorija == k.id_kategorija).SingleOrDefault();
+                ArtiklModel data1 = artikls.Where(ar => ar.id_artikl == k.id_artikl).SingleOrDefault();
                 oglas_kategorija podatak = new oglas_kategorija();
                 podatak.oglas = k;
                 podatak.kategorija = data.naziv_kategorije;
+                podatak.artikl = data1.naziv_artikl;
                 oglasi.Add(podatak);
 
             }
+
+
+
             return View(oglasi);
         }
        
@@ -105,32 +112,56 @@ namespace WebApplication7.Controllers
         [HttpPost]
         public ActionResult DodavanjeOglasa(OglasModel o)
         {
-
-            if (ModelState.IsValid)
+            if (Request.Files.Count > 0)
             {
-                if (o.id_oglas != 0)
+                var file = Request.Files[0];
+
+
+                if (file != null && file.ContentLength > 0)
                 {
-                    Postotak(o.akcijska_cijena);
-                    baza.Entry(o).State =
-                        EntityState.Modified;
-
+                    var fileName = Path.GetFileName(file.FileName);
+                    o.slika_proizvoda = fileName;
+                    var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                    file.SaveAs(path);
                 }
-                else
-                {
-                    
-                    Postotak(o.akcijska_cijena);
-                    baza.Oglasi.Add(o);
-                }
-
-                baza.SaveChanges();
-
-                return RedirectToAction("PopisOglasa");
             }
+            var allowed = new[] { ".jpeg", ".png" };
+            var extesions = Path.GetExtension(TempPath);
 
-            List<OglasModel> oglas = baza.Oglasi.ToList();
-            oglas.Add(new OglasModel { naziv_artikla="Nedefinirano" });
-            ViewBag.Oglas = oglas;
-            ViewBag.Title = "Dodavanje novog oglasa";
+            if (o.osnovna_cijena < 0 && o.postotak_popusta < 0 && o.akcijska_cijena < 0)
+            {
+                TempData["Error"] = "error message";
+            }
+            else
+            {
+                if (ModelState.IsValid)
+                {
+                    if (o.id_oglas != 0)
+                    {
+              
+                        baza.Entry(o).State =
+                            EntityState.Modified;
+
+                    }
+                    else
+                    {
+
+                     
+                        baza.Oglasi.Add(o);
+                    }
+
+
+                    baza.SaveChanges();
+
+
+                    return RedirectToAction("PopisOglasa");
+                }
+
+                List<OglasModel> oglas = baza.Oglasi.ToList();
+       
+                ViewBag.Oglas = oglas;
+                ViewBag.Title = "Dodavanje novog oglasa";
+            }
             
             return View(o);
         }
@@ -168,15 +199,7 @@ namespace WebApplication7.Controllers
             return RedirectToAction("PopisOglasa");
         }
 
-        public double Postotak(double akcijska)
-        {
-            OglasModel o=new OglasModel();
 
-            o.akcijska_cijena = akcijska;
-            akcijska = ((o.postotak_popusta / (100)) * o.osnovna_cijena);
-            
-            return akcijska;
-        }
     }
 
 }

@@ -7,117 +7,119 @@
 
 <h2>@ViewBag.Title</h2>
 <br />
-@using (Html.BeginForm())
+@using (Html.BeginForm("DodavanjeOglasa", "Oglas", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
     @Html.AntiForgeryToken()
-    <div class="form-horizontal">
-        <table class=" table">
+<div class="form-horizontal">
+    <table class=" table">
 
-            @Html.HiddenFor(model => model.id_oglas, new { disabled = true, @class = "form-control" })
-
-
-            @Html.HiddenFor(model => model.id_akcija, new { disabled = true, @class = "form-control" })
+        @Html.HiddenFor(model => model.id_oglas, new { disabled = true, @class = "form-control" })
 
 
-            @Html.HiddenFor(model => model.id_kategorija, new { disabled = true, @class = "form-control" })
+        @Html.HiddenFor(model => model.id_akcija, new { disabled = true, @class = "form-control" })
 
 
-            @Html.HiddenFor(model => model.id_poduzece, new { disabled = true, @class = "form-control" })
+        @Html.HiddenFor(model => model.id_kategorija, new { disabled = true, @class = "form-control" })
 
 
-            @Html.HiddenFor(model => model.id_artikl, new { disabled = true, @class = "form-control" })
+        @Html.HiddenFor(model => model.id_poduzece, new { disabled = true, @class = "form-control" })
 
 
-            <tr>
-                <td>Artikl</td>
-                <td>
-                    @Html.DropDownListFor(model => model.id_artikl,
-                             new SelectList(ViewBag.Artikli, "value", "text"), new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.id_artikl, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.osnovna_cijena, new { @class = "control-label" })</td>
-                <td>
-                    @Html.EditorFor(model => model.osnovna_cijena, new { htmlAttributes = new { @min = "0", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.osnovna_cijena, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.mjerna_jedinica, new { @class = "control-label" })</td>
-                <td>
+        @Html.HiddenFor(model => model.id_artikl, new { disabled = true, @class = "form-control" })
 
-                    @Html.EditorFor(model => model.mjerna_jedinica, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.mjerna_jedinica, "", new { @class = "text-danger" })
-                </td>
 
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.postotak_popusta, new { @class = "control-label" })</td>
-                <td>
-                    @Html.EditorFor(model => model.postotak_popusta, new { htmlAttributes = new { @min = "0", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.postotak_popusta, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.akcijska_cijena, new { @class = "control-label" }) </td>
-                <td>
-                    @Html.EditorFor(model => model.akcijska_cijena, new { htmlAttributes = new { @min = "0", @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.akcijska_cijena, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.kratki_opis, new { @class = "control-label" })</td>
-                <td>
-                    @Html.EditorFor(model => model.kratki_opis, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.kratki_opis, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.dugi_opis, new { @class = "control-label" })</td>
-                <td>
-                    @Html.TextAreaFor(model => model.dugi_opis, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.dugi_opis, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>Kategorija</td>
-                <td>
-                    @Html.DropDownListFor(model => model.id_kategorija,
-                             new SelectList(ViewBag.Kategorije, "value", "text"), new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.id_kategorija, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>Poduzeće</td>
-                <td>
-                    @Html.DropDownListFor(model => model.id_poduzece,
-                             new SelectList(ViewBag.Poduzeca, "value", "text"), new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.id_poduzece, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>Akcija</td>
-                <td>
-                    @Html.DropDownListFor(model => model.id_akcija,
-                             new SelectList(ViewBag.Akcije, "value", "text"), new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.id_akcija, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td>
+        <tr>
+            <td>Artikl</td>
+            <td>
+                @Html.DropDownListFor(model => model.id_artikl,
+                         new SelectList(ViewBag.Artikli, "value", "text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_artikl, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.osnovna_cijena, new { @class = "control-label" })</td>
+            <td>
+                @Html.EditorFor(model => model.osnovna_cijena, new { htmlAttributes = new { @class = "form-control", step = "0.01", @min = "0" ,id="osnovna", onChange = "izracunajAkcijsku();", type = "number", oninput = "this.value = Math.abs(this.value)" } })
+                @Html.ValidationMessageFor(model => model.osnovna_cijena, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.mjerna_jedinica, new { @class = "control-label" })</td>
+            <td>
 
-                    <span>Select File:</span>
-                    @Html.TextBoxFor(m => m.slika_proizvoda, new { type = "picture", id = "fileUpload" })
-                    <br />
-                    @Html.ValidationMessageFor(m => m.slika_proizvoda, "", new { @class = "text-danger"})
-                    <hr />
+                @Html.EditorFor(model => model.mjerna_jedinica, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.mjerna_jedinica, "", new { @class = "text-danger" })
+            </td>
 
-                </td>
-            </tr>
-        </table>
-    </div>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.postotak_popusta, new { @class = "control-label" })</td>
+            <td>
+                @Html.EditorFor(model => model.postotak_popusta, new { htmlAttributes = new { @min = "0", @class = "form-control",id="postotak", onChange = "izracunajAkcijsku();" , type = "number", oninput = "this.value = Math.abs(this.value)" } })
+                @Html.ValidationMessageFor(model => model.postotak_popusta, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.akcijska_cijena, new { @class = "control-label" }) </td>
+            <td>
+                @Html.EditorFor(model => model.akcijska_cijena, new { htmlAttributes = new { @class = "form-control", @readonly="readonly", id="akcijska",type="number"} })
+                @Html.ValidationMessageFor(model => model.akcijska_cijena, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.kratki_opis, new { @class = "control-label" })</td>
+            <td>
+                @Html.EditorFor(model => model.kratki_opis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.kratki_opis, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.dugi_opis, new { @class = "control-label" })</td>
+            <td>
+                @Html.TextAreaFor(model => model.dugi_opis, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.dugi_opis, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>Kategorija</td>
+            <td>
+                @Html.DropDownListFor(model => model.id_kategorija,
+                         new SelectList(ViewBag.Kategorije, "value", "text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_kategorija, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>Poduzeće</td>
+            <td>
+                @Html.DropDownListFor(model => model.id_poduzece,
+                         new SelectList(ViewBag.Poduzeca, "value", "text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_poduzece, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>Akcija</td>
+            <td>
+                @Html.DropDownListFor(model => model.id_akcija,
+                         new SelectList(ViewBag.Akcije, "value", "text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_akcija, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+                <span>Odaberite sliku:</span>
+                @Html.TextBoxFor(m => m.slika_proizvoda, new { type = "file", id = "fileUpload", accept = "image/*", onChange = "validateFileType();" })
+                <br />
+                @Html.ValidationMessageFor(m => m.slika_proizvoda, "", new { @class = "text-danger" })
+                <hr />
+
+            </td>
+        </tr>
+
+    </table>
+
+</div>
     <p>
         @Html.ValidationSummary(true,
                   "Spremanje nije uspjelo. Popravite potrebne podatke i pokušajte ponovno!", new { @class = "text-danger" })
@@ -130,10 +132,28 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
     <script>
-        $(function () {
-            $('#fileUpload').on('change', function () {
-                var filePath = $(this).val();
-                console.log(filePath);
-            });
-        });
-    </script>
+
+
+            function validateFileType() {
+                var fileName = document.getElementById("fileUpload").value;
+                var idxDot = fileName.lastIndexOf(".") + 1;
+                var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+                if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+
+                } else {
+                    alert("Molimo dodajte sliku! Drugi formati nisu podržani!");
+                    document.getElementById("fileUpload").value = "";
+                }
+
+        }
+        function izracunajAkcijsku() {
+            if (document.getElementById("osnovna").value != "" && document.getElementById("postotak").value != "") {
+                document.getElementById("akcijska").value = ((document.getElementById("postotak").value / (100)) * document.getElementById("osnovna").value);
+            }
+        }
+
+        
+
+        
+        </script>
+      
