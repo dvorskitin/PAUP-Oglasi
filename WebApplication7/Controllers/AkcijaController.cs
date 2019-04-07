@@ -214,26 +214,25 @@ namespace WebApplication7.Controllers
             MemoryStream workStream = new MemoryStream();
             StringBuilder status = new StringBuilder("");
             DateTime dTime = DateTime.Now;
-            //file name to be created   
-            string strPDFFileName = string.Format("SamplePdf" + dTime.ToString("ddMMyyyy") + "-" + ".pdf");
+            dTime.ToShortDateString();
+     
+            string strPDFFileName = string.Format("Popis Akcija" + dTime.ToString("ddMMyyyy") + "-" + ".pdf");
             Document doc = new Document();
             doc.SetMargins(0f, 0f, 0f, 0f);
-            //Create PDF Table with 5 columns  
-            PdfPTable tableLayout = new PdfPTable(5);
-            doc.SetMargins(0f, 0f, 0f, 0f);
-            //Create PDF Table  
 
-            //file will created in this path  
-            string strAttachment = Server.MapPath("~/Preuzimanja/" + strPDFFileName);
+            PdfPTable tableLayout = new PdfPTable(4);
+            doc.SetMargins(0f, 0f, 0f, 0f);
+    
+            string strAttachment = Server.MapPath("~/Downloads/" + strPDFFileName);
 
 
             PdfWriter.GetInstance(doc, workStream).CloseStream = false;
             doc.Open();
 
-            //Add Content to PDF   
+
             doc.Add(Add_Content_To_PDF(tableLayout));
 
-            // Closing the document  
+         
             doc.Close();
 
             byte[] byteInfo = workStream.ToArray();
@@ -247,25 +246,25 @@ namespace WebApplication7.Controllers
         protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout)
         {
 
-            float[] headers = { 50, 24, 45, 35, 50 }; //Header Widths  
-            tableLayout.SetWidths(headers); //Set the pdf headers  
-            tableLayout.WidthPercentage = 100; //Set the PDF File witdh percentage  
+            float[] headers = { 24, 45, 35, 50 };   
+            tableLayout.SetWidths(headers);  
+            tableLayout.WidthPercentage = 100; 
             tableLayout.HeaderRows = 1;
-            //Add Title to the PDF file at the top  
+
 
             List<AkcijaModel> akcije = baza.Akcije.ToList<AkcijaModel>();
 
 
 
-            tableLayout.AddCell(new PdfPCell(new Phrase("Creating Pdf using ItextSharp", new Font(Font.FontFamily.HELVETICA, 8, 1, new iTextSharp.text.BaseColor(0, 0, 0)))) {
+            tableLayout.AddCell(new PdfPCell(new Phrase("POPIS AKCIJA", new Font(Font.FontFamily.HELVETICA, 18, 1, new iTextSharp.text.BaseColor(0, 0, 1)))) {
                 Colspan = 12, Border = 0, PaddingBottom = 5, HorizontalAlignment = Element.ALIGN_CENTER
             });
 
 
             ////Add header  
-            AddCellToHeader(tableLayout, "ID akcije");
+      
             AddCellToHeader(tableLayout, "Naziv akcije");
-            AddCellToHeader(tableLayout, "Datum početka");
+            AddCellToHeader(tableLayout, "Datum pocetka");
             AddCellToHeader(tableLayout, "Datum završetka");
             AddCellToHeader(tableLayout, "Opis");
 
@@ -274,10 +273,10 @@ namespace WebApplication7.Controllers
             foreach (var akc in akcije)
             {
 
-                AddCellToBody(tableLayout, akc.id_akcija.ToString());
+
                 AddCellToBody(tableLayout, akc.naziv_akcija);
-                AddCellToBody(tableLayout, akc.datum_pocetka.ToString());
-                AddCellToBody(tableLayout, akc.datum_zavrsetka.ToString());
+                AddCellToBody(tableLayout, akc.datum_pocetka.Value.ToShortDateString());
+                AddCellToBody(tableLayout, akc.datum_zavrsetka.Value.ToShortDateString());
                 AddCellToBody(tableLayout, akc.opis);
 
             }
@@ -287,9 +286,9 @@ namespace WebApplication7.Controllers
         private static void AddCellToHeader(PdfPTable tableLayout, string cellText)
         {
 
-            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, iTextSharp.text.BaseColor.YELLOW)))
+            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 8, 1, iTextSharp.text.BaseColor.WHITE)))
     {
-                HorizontalAlignment = Element.ALIGN_LEFT, Padding = 5, BackgroundColor = new iTextSharp.text.BaseColor(128, 0, 0)
+                HorizontalAlignment = Element.ALIGN_LEFT, Padding = 5, BackgroundColor = new iTextSharp.text.BaseColor(0, 0, 230)
     });
         }
 

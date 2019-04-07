@@ -40,9 +40,7 @@
     }
 </table>
 
-<input type="button"
-       value="Prikaz pdf formata"
-       onclick="location.href='@Url.Action("CreatePdf", "Akcija" ) >'" />
+<p>@Html.ActionLink("Prikaz PDF formata", "CreatePdf", "Akcija")</p>
 
 <p>@Html.ActionLink("Dodavanje nove akcije", "DodavanjeAkcija", "Akcija")</p>
 <p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>

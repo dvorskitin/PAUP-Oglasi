@@ -24,11 +24,9 @@
     {
         <tr>
             <td>@k.naziv_kategorije</td>
-            <td>
-                <p>@Html.ActionLink("Uredi", "UrediKategoriju", new { id = k.id_kategorija })</p>
 
-            </td>
             <td>
+                <a onclick="pokaziModalKat('@Url.Action("UrediKategoriju", "Kategorija", new { id = k.id_kategorija })')" class="btn btn-primary btn-sm">Uredi</a>
                 <a onclick="pokaziModalKat('@Url.Action("ObrisiKategoriju", "Kategorija", new { id = k.id_kategorija })')" class="btn btn-danger btn-sm">Obriši</a>
             </td>
         </tr>

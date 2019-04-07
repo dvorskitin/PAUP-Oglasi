@@ -63,7 +63,7 @@
         <tr>
             <td>@Html.LabelFor(model => model.akcijska_cijena, new { @class = "control-label" }) </td>
             <td>
-                @Html.EditorFor(model => model.akcijska_cijena, new { htmlAttributes = new { @class = "form-control", @readonly="readonly", id="akcijska",type="number"} })
+                @Html.EditorFor(model => model.akcijska_cijena, new { htmlAttributes = new { @class = "form-control", @readonly="readonly", id="akcijska"} })
                 @Html.ValidationMessageFor(model => model.akcijska_cijena, "", new { @class = "text-danger" })
             </td>
         </tr>
@@ -147,8 +147,10 @@
 
         }
         function izracunajAkcijsku() {
+            var cijena;
             if (document.getElementById("osnovna").value != "" && document.getElementById("postotak").value != "") {
-                document.getElementById("akcijska").value = ((document.getElementById("postotak").value / (100)) * document.getElementById("osnovna").value);
+                cijena = ((document.getElementById("postotak").value / (100)) * document.getElementById("osnovna").value);
+                document.getElementById("akcijska").value = (document.getElementById("osnovna").value - cijena) ;
             }
         }
 

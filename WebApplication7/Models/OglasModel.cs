@@ -25,7 +25,7 @@ namespace Akcija_prodaja.Models
 
         [DisplayName("Osnovna cijena")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
-        public double osnovna_cijena { get; set; }
+        public decimal osnovna_cijena { get; set; }
 
         [DisplayName("Mjerna jedinica")]
         [DataType(DataType.Text)]
@@ -34,11 +34,12 @@ namespace Akcija_prodaja.Models
 
         [DisplayName("Postotka popusta")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
-        public double postotak_popusta { get; set; }
+        public decimal postotak_popusta { get; set; }
 
         [DisplayName("Akcijska cijena")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
-        public double akcijska_cijena { get; set; }
+        [DataType(DataType.Currency)]
+        public decimal akcijska_cijena { get; set; }
 
         [DisplayName("Kratki opis")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "{0} je obavezan podatak.")]
