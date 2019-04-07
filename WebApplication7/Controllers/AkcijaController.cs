@@ -273,7 +273,7 @@ namespace WebApplication7.Controllers
             foreach (var akc in akcije)
             {
 
-
+                
                 AddCellToBody(tableLayout, akc.naziv_akcija);
                 AddCellToBody(tableLayout, akc.datum_pocetka.Value.ToShortDateString());
                 AddCellToBody(tableLayout, akc.datum_zavrsetka.Value.ToShortDateString());
