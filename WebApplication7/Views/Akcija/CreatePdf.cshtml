@@ -1,0 +1,59 @@
+﻿@using Akcija_prodaja.Models
+@using System.Web.Mvc;
+@model List<AkcijaModel>
+
+
+<h2>@ViewBag.Title</h2>
+@using (@Html.BeginForm("CreatePdf", "Akcija", FormMethod.Get, new { @class = "form-inline" }))
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="h2 text-center"> Akcije </div> <tableclass = "table table-bordered" />
+    </div>
+</div>
+<table>
+    <thead>
+        <tr>
+            <td>
+                Id
+            </td>
+            <td>
+                Naziv
+            </td>
+            <td>
+                Datum početka
+            </td>
+            <td>
+                Datum završetka
+            </td>
+            <td>
+                Hire_Date
+            </td>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach (AkcijaModel a in Model)
+
+        {
+            <tr>
+                <td> @a.naziv_akcija </td>
+                <td> @a.datum_pocetka </td>
+                <td> @a.datum_zavrsetka </td>
+                <td> @a.opis </td>
+
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
+<input type="button"
+       value="Povratak"
+       onclick="location.href='@Url.Action("PopisAkcija", "Akcija" ) >'" />
+

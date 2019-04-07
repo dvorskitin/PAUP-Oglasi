@@ -75,6 +75,9 @@
     <Reference Include="GitHub, Version=1.13.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GitHub.1.13.2\lib\netstandard2.0\GitHub.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -382,6 +385,7 @@
     <Content Include="Views\Artikl\UrediArtikl.cshtml" />
     <Content Include="Views\Artikl\DodavanjeArtikla.cshtml" />
     <Content Include="Views\Artikl\ObrisiArtikl.cshtml" />
+    <Content Include="Views\Akcija\CreatePdf.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

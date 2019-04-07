@@ -25,19 +25,25 @@
     </tr>
     @foreach (AkcijaModel a in Model)
     {
-    <tr>
-        <td>@a.naziv_akcija</td>
-        <td>@a.datum_pocetka.Value.ToShortDateString()</td>
-        <td>@a.datum_zavrsetka.Value.ToShortDateString()</td>
-        <td>@a.opis</td>
+        <tr>
+            <td>@a.naziv_akcija</td>
+            <td>@a.datum_pocetka.Value.ToShortDateString()</td>
+            <td>@a.datum_zavrsetka.Value.ToShortDateString()</td>
+            <td>@a.opis</td>
 
-        <td><a onclick="pokaziModal('@Url.Action("UrediAkciju", "Akcija",new { id = a.id_akcija })')" class="btn btn-primary btn-sm">Uredi</a></td>
+            <td><a onclick="pokaziModal('@Url.Action("UrediAkciju", "Akcija",new { id = a.id_akcija })')" class="btn btn-primary btn-sm">Uredi</a></td>
 
-        <td><a onclick="pokaziModal('@Url.Action("ObrisiAkciju", "Akcija",new { id = a.id_akcija })')" class="btn btn-danger btn-sm">Obriši</a></td>
-    </tr>
+            <td><a onclick="pokaziModal('@Url.Action("ObrisiAkciju", "Akcija",new { id = a.id_akcija })')" class="btn btn-danger btn-sm">Obriši</a></td>
+
+        </tr>
 
     }
 </table>
+
+<input type="button"
+       value="Prikaz pdf formata"
+       onclick="location.href='@Url.Action("CreatePdf", "Akcija" ) >'" />
+
 <p>@Html.ActionLink("Dodavanje nove akcije", "DodavanjeAkcija", "Akcija")</p>
 <p>@Html.ActionLink("Povratak", "PocetnaStranica", "Pocetna")</p>
 
