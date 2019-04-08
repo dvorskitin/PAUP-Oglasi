@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 07, 2019 at 07:45 PM
+-- Generation Time: Apr 08, 2019 at 06:20 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `akcija` (
   `datum_zavrsetka` date NOT NULL,
   `opis` varchar(350) NOT NULL,
   PRIMARY KEY (`id_akcija`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `akcija`
@@ -62,10 +62,10 @@ INSERT INTO `akcija` (`id_poduzece`, `id_akcija`, `id_oglas`, `naziv_akcija`, `d
 DROP TABLE IF EXISTS `artikl`;
 CREATE TABLE IF NOT EXISTS `artikl` (
   `id_artikl` int(11) NOT NULL AUTO_INCREMENT,
-  `naziv_artikl` varchar(45) COLLATE cp1250_croatian_ci NOT NULL,
+  `naziv_artikl` varchar(45) CHARACTER SET cp1250 COLLATE cp1250_croatian_ci NOT NULL,
   `cijena_artikl` double NOT NULL,
   PRIMARY KEY (`id_artikl`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=cp1250 COLLATE=cp1250_croatian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `artikl`
@@ -138,10 +138,10 @@ DROP TABLE IF EXISTS `oglas`;
 CREATE TABLE IF NOT EXISTS `oglas` (
   `id_oglas` int(11) NOT NULL AUTO_INCREMENT,
   `id_akcija` int(11) NOT NULL,
-  `osnovna_cijena` decimal(10,0) DEFAULT NULL,
+  `osnovna_cijena` double DEFAULT NULL,
   `mjerna_jedinica` varchar(15) DEFAULT NULL,
-  `postotak_popusta` decimal(10,0) DEFAULT NULL,
-  `akcijska_cijena` decimal(10,0) DEFAULT NULL,
+  `postotak_popusta` int(11) DEFAULT NULL,
+  `akcijska_cijena` double DEFAULT NULL,
   `kratki_opis` varchar(100) DEFAULT NULL,
   `dugi_opis` varchar(300) DEFAULT NULL,
   `slika_proizvoda` varchar(255) DEFAULT NULL,
@@ -151,15 +151,18 @@ CREATE TABLE IF NOT EXISTS `oglas` (
   PRIMARY KEY (`id_oglas`),
   KEY `id_kategorija` (`id_kategorija`),
   KEY `id_artikl` (`id_artikl`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `oglas`
 --
 
 INSERT INTO `oglas` (`id_oglas`, `id_akcija`, `osnovna_cijena`, `mjerna_jedinica`, `postotak_popusta`, `akcijska_cijena`, `kratki_opis`, `dugi_opis`, `slika_proizvoda`, `id_poduzece`, `id_kategorija`, `id_artikl`) VALUES
-(21, 2, '100', 'komad', '50', '50', ' yyxy', 'sa', 'lopta.png', 0, 1, 1),
-(22, 2, '100', 'komad', '50', '50', 'sdsad', 'sadad', 'neimenovano.png', 0, 1, 1);
+(21, 2, 100, 'komad', 50, 50, ' yyxy', 'sa', 'lopta.png', 0, 1, 1),
+(22, 2, 100, 'komad', 50, 50.2, 'sdsad', 'sadad', 'neimenovano.png', 0, 1, 1),
+(25, 2, 20, 'komad', 10, 18, ' yyxy', 'dsadsa', 'lopta.png', 1, 1, 1),
+(27, 2, 12, 'komad', 12, 11, ' yyxy', 'dasdsa', 'lopta.png', 1, 1, 1),
+(29, 2, 15, 'komad', 10, 14, ' yyxy', 'xdsad', 'kruh.png', 1, 1, 1);
 
 -- --------------------------------------------------------
 
