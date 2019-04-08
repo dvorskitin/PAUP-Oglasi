@@ -24,7 +24,7 @@
             <tr>
                 <td>@Html.LabelFor(model => model.datum_pocetka, new { @class = "control-label" })</td>
                 <td>
-                    @Html.EditorFor(model => model.datum_pocetka, new { htmlAttributes = new { @class = "datefield",type="date" } })
+                    @Html.EditorFor(model => model.datum_pocetka, new { htmlAttributes = new { @class = "datefield", type = "date", id = "poc", onchange = "setMin();" } })
                     @Html.ValidationMessageFor(model => model.datum_pocetka, "", new { @class = "text-danger" })
                 </td>
             </tr>
@@ -32,7 +32,7 @@
                 <td>@Html.LabelFor(model => model.datum_zavrsetka, new { @class = "control-label" })</td>
                 <td>
 
-                    @Html.EditorFor(model => model.datum_zavrsetka, new { htmlAttributes = new { @class = "datefield",type="date"} })
+                    @Html.EditorFor(model => model.datum_zavrsetka, new { htmlAttributes = new { @class = "datefield", type = "date", id = "zav", onchange = "setMax();" } })
                     @Html.ValidationMessageFor(model => model.datum_zavrsetka, "", new { @class = "text-danger" })
                 </td>
 
@@ -47,7 +47,7 @@
             <tr>
                 <td>Poduzeće</td>
                 <td>
-                    
+
                     @Html.DropDownListFor(model => model.id_poduzece,
                              new SelectList(ViewBag.Poduzeca, "value", "text"), new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.id_poduzece, "", new { @class = "text-danger" })
@@ -67,3 +67,19 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
+<script>
+
+    function setMax() {
+
+        document.getElementById("poc").setAttribute("max", document.getElementById("zav").value);
+
+    }
+
+    function setMin() {
+
+        document.getElementById("zav").setAttribute("min", document.getElementById("poc").value);
+
+    }
+
+
+</script>
